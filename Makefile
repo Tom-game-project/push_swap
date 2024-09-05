@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -fsanitize=address
+CFLAGS = -Wextra -Werror -Wall -g
 
 # list module sources
 LIST_SRC = \
@@ -24,7 +24,7 @@ all: $(MAIN_TARGET)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(MAIN_TARGET): $(MAIN_SRC) $(LIST_OBJ)
-	$(CC) $(CFLAGS) -o $(MAIN_SRC) $(LIST_OBJ)
+	$(CC) $(CFLAGS) $(MAIN_SRC) $(LIST_OBJ) -o $@
 
 $(LIST_NAME):$(LIST_OBJ)
 	ar -rcs $@ $^
