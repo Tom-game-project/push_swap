@@ -8,7 +8,7 @@
 t_node* init_node(int i32_data){
     t_node* node;
 
-    node = (t_node*)malloc(sizeof(t_node*));
+    node = (t_node*)malloc(sizeof(t_node));
     if (node == NULL)
         return (NULL);
     node->back_p=NULL;

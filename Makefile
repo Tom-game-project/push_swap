@@ -35,4 +35,7 @@ clean:
 fclean: clean
 	rm -f $(MAIN_TARGET)
 
+re: fclean
+	make all
+
 .PHONY: all clean fclean

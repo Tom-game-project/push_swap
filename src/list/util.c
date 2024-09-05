@@ -10,4 +10,5 @@ void print_list(t_node** parent){
         printf("%d",tmp_node_p->i32_data);
         tmp_node_p = tmp_node_p->back_p;
     }
+    printf("hello world");
 }
