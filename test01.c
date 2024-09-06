@@ -3,7 +3,7 @@
 #include "stdio.h"
 #include <assert.h>
 
-/// @brief
+/// @brief pop test 
 /// @return 
 int main(){
     t_node *node;

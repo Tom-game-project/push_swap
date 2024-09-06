@@ -13,7 +13,7 @@ src/list/len.c\
 src/list/get_elem.c
 
 TEST = \
-test01.c
+test02.c
 
 
 LIST_OBJ = $(LIST_SRC:.c=.o)
