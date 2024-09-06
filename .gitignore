@@ -1,4 +1,5 @@
 checker_linux
 push_swap
+test
 *.out
 *.o

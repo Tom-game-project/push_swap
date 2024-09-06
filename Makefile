@@ -10,7 +10,8 @@ src/list/push.c\
 src/list/util.c\
 src/list/pop.c\
 src/list/len.c\
-src/list/get_elem.c
+src/list/get_elem.c\
+src/list/assignment.c
 
 TEST = \
 test02.c
