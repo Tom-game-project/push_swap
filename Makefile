@@ -9,10 +9,11 @@ src/list/list.c\
 src/list/push.c\
 src/list/util.c\
 src/list/pop.c\
-src/list/len.c
+src/list/len.c\
+src/list/get_elem.c
 
 TEST = \
-test00.c
+test01.c
 
 
 LIST_OBJ = $(LIST_SRC:.c=.o)

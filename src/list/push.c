@@ -22,6 +22,24 @@ int push(t_node** parent_p,int i32_data){
     return (0);
 }
 
-// int heappush(t_node** parent_p,int i32_data){
-    
-// }
+int heappush(t_node** parent_p,int i32_data){
+    int current_index;
+    int parent_index;
+    t_node* current_node;
+
+    push(parent_p, i32_data);
+    current_index = len(*parent_p) - 1;
+    while (current_index > 0){
+        parent_index = (current_index - 1) / 2;
+        current_node = get_ptr(*parent_p,current_index);
+        if (i32_data < current_node->i32_data)
+        {
+            current_node -> i32_data = get_elem(*parent_p, parent_index);
+            current_index = parent_index;
+            continue;
+        }
+        break;
+    }
+    current_node->i32_data = i32_data;
+    return (0);
+}

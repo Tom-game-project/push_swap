@@ -18,3 +18,19 @@ int pop(t_node **node_p_p){
     }
     return(i32_data);
 }
+
+t_node* pop_elem(t_node **node_p_p)
+{
+    t_node* head_p;
+
+    head_p = *node_p_p;
+    if (head_p == NULL)
+        return (NULL);// error
+    *node_p_p = head_p->back_p;
+    if (head_p -> back_p != NULL)
+    {
+        head_p->back_p->pre_p = NULL;
+        head_p->back_p = NULL;
+    }
+    return(head_p);
+}
