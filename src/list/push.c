@@ -21,3 +21,7 @@ int push(t_node** parent_p,int i32_data){
     new_node_p->pre_p = back_node_p;
     return (0);
 }
+
+// int heappush(t_node** parent_p,int i32_data){
+    
+// }

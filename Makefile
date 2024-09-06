@@ -7,7 +7,12 @@ src/list/get_back.c\
 src/list/init_node.c\
 src/list/list.c\
 src/list/push.c\
-src/list/util.c
+src/list/util.c\
+src/list/pop.c\
+src/list/len.c
+
+TEST = \
+test00.c
 
 
 LIST_OBJ = $(LIST_SRC:.c=.o)
@@ -26,8 +31,12 @@ all: $(MAIN_TARGET)
 $(MAIN_TARGET): $(MAIN_SRC) $(LIST_OBJ)
 	$(CC) $(CFLAGS) $(MAIN_SRC) $(LIST_OBJ) -o $@
 
+
 $(LIST_NAME):$(LIST_OBJ)
 	ar -rcs $@ $^
+
+test: $(TEST) $(LIST_OBJ)
+	$(CC) $(CFLAGS) $(TEST) $(LIST_OBJ) -o $@
 
 clean:
 	rm -f $(LIST_OBJ) $(LIST_NAME)
@@ -38,4 +47,4 @@ fclean: clean
 re: fclean
 	make all
 
-.PHONY: all clean fclean
+.PHONY: all clean fclean test
