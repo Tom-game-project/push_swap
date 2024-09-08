@@ -20,6 +20,13 @@ int main(){
     heappush(&node,6);
     heappush(&node,4);
 
-    print_list(&node);
+    printf("poped%d\n",heappop(&node));
+    printf("poped%d\n",heappop(&node));
+    printf("poped%d\n",heappop(&node));
+    printf("poped%d\n",heappop(&node));
+    printf("poped%d\n",heappop(&node));
+
+    // print_list(&node);
+    print_ptr(&node);
     return (0);
 }

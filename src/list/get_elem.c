@@ -5,7 +5,7 @@ int get_elem(t_node* node_p,int index){
     int i;
 
     i = 0;
-    while (i <= index)
+    while (i < index)
     {
         i += 1;
         if (node_p == NULL)

@@ -15,7 +15,8 @@ src/list/assignment.c\
 src/list/insert.c
 
 TEST = \
-test03.c
+test02.c
+# test04.c
 
 
 LIST_OBJ = $(LIST_SRC:.c=.o)
