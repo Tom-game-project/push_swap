@@ -56,36 +56,33 @@ t_node* pop_index_elem(t_node** node_p_p,int index)
     return (r_node);
 }
 
+
+int __pop_swap_helper(t_node** node_p_p,int current_index, int child_index)
+{
+    set_num(node_p_p, current_index, get_elem(*node_p_p,child_index));
+    return (child_index);
+}
+
 int __pop_proc(t_node** node_p_p, int last_index)
 {
     int current_index;
     int current_item;
     int child_index;
 
-    // current_index = 0;
     current_item = get_elem(*node_p_p, current_index = 0);
     while ((child_index = current_index * 2 + 1) <= last_index)
     {
         if (last_index <= child_index)
         {
             if (get_elem(*node_p_p,child_index) < current_item)
-            {
-                set_num(node_p_p, current_index, get_elem(*node_p_p,child_index));
-                current_index = child_index;
-            }
+                current_index = __pop_swap_helper(node_p_p, current_index, child_index);
             break;
         }
         if (get_elem(*node_p_p, child_index + 1) < current_item && \
         get_elem(*node_p_p, child_index + 1) < get_elem(*node_p_p, child_index))
-        {
-            set_num(node_p_p, current_index, get_elem(*node_p_p, child_index + 1));
-            current_index = child_index + 1;
-        }
+            current_index = __pop_swap_helper(node_p_p, current_index, child_index + 1);
         else if (get_elem(*node_p_p, child_index + 1) < current_item || get_elem(*node_p_p, child_index) < current_item)
-        {
-            set_num(node_p_p,current_index, get_elem(*node_p_p, child_index));
-            current_index = child_index;
-        }
+            current_index = __pop_swap_helper(node_p_p, current_index, child_index);
         else
             break;
     }
