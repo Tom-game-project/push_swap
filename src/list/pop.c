@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 /// @brief return head data and remove it
-///        
 /// @return 
 int pop(t_node **node_p_p,int index){
     int rvalue;
@@ -57,42 +56,38 @@ t_node* pop_index_elem(t_node** node_p_p,int index)
     return (r_node);
 }
 
-#include <stdio.h>
-
 int __pop_proc(t_node** node_p_p, int last_index)
 {
     int current_index;
     int current_item;
     int child_index;
 
-    current_index = 0;
-    current_item = get_elem(*node_p_p, current_index);
+    // current_index = 0;
+    current_item = get_elem(*node_p_p, current_index = 0);
     while ((child_index = current_index * 2 + 1) <= last_index)
     {
-        int left_item = get_elem(*node_p_p,child_index);
         if (last_index <= child_index)
         {
-            if (left_item < current_item)
+            if (get_elem(*node_p_p,child_index) < current_item)
             {
-                set_num(node_p_p,current_index,left_item);
+                set_num(node_p_p, current_index, get_elem(*node_p_p,child_index));
                 current_index = child_index;
             }
             break;
         }
-        int right_item = get_elem(*node_p_p,child_index + 1);
-        if (right_item < current_item && right_item < left_item)
+        if (get_elem(*node_p_p, child_index + 1) < current_item && \
+        get_elem(*node_p_p, child_index + 1) < get_elem(*node_p_p, child_index))
         {
-            set_num(node_p_p,current_index,right_item);
+            set_num(node_p_p, current_index, get_elem(*node_p_p, child_index + 1));
             current_index = child_index + 1;
-            continue;
         }
-        else if (right_item < current_item || left_item < current_item)
+        else if (get_elem(*node_p_p, child_index + 1) < current_item || get_elem(*node_p_p, child_index) < current_item)
         {
-            set_num(node_p_p,current_index,left_item);
+            set_num(node_p_p,current_index, get_elem(*node_p_p, child_index));
             current_index = child_index;
-            continue;
         }
-        break;
+        else
+            break;
     }
     return (current_index);
 }
@@ -106,7 +101,6 @@ int heappop(t_node** node_p_p)
     int rvalue;
     int last_index;
     int new_head;
-    int current_index;
 
     rvalue = pop(node_p_p, 0);
     if (len(*node_p_p) == 0)
@@ -114,8 +108,7 @@ int heappop(t_node** node_p_p)
     last_index = len(*node_p_p) - 1;
     new_head = pop(node_p_p,last_index);
     insert(node_p_p,0,new_head);
-    current_index = __pop_proc(node_p_p, last_index);
-    set_num(node_p_p,current_index ,new_head);
+    set_num(node_p_p, __pop_proc(node_p_p, last_index),new_head);
     return (rvalue);
 }
 

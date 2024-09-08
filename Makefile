@@ -39,9 +39,9 @@ $(LIST_NAME):$(LIST_OBJ)
 	ar -rcs $@ $^
 
 test: $(TEST) $(LIST_NAME)
+	rm -f test
 	$(CC) $(CFLAGS) $(TEST) $(LIST_OBJ) -o $@
 	./test
-	rm test
 
 clean:
 	rm -f $(LIST_OBJ) $(LIST_NAME)
