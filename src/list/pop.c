@@ -19,6 +19,9 @@ int pop(t_node **node_p_p){
     return(i32_data);
 }
 
+/// @brief you must free returned object by yourself
+/// @param node_p_p 
+/// @return 
 t_node* pop_elem(t_node **node_p_p)
 {
     t_node* head_p;
@@ -34,3 +37,12 @@ t_node* pop_elem(t_node **node_p_p)
     }
     return(head_p);
 }
+
+ 
+
+/// @brief remove first element of heap data
+/// @param node_p_p 
+/// @return 
+// int heappop(t_node** node_p_p){
+
+// }

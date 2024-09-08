@@ -11,10 +11,11 @@ src/list/util.c\
 src/list/pop.c\
 src/list/len.c\
 src/list/get_elem.c\
-src/list/assignment.c
+src/list/assignment.c\
+src/list/insert.c
 
 TEST = \
-test02.c
+test00.c
 
 
 LIST_OBJ = $(LIST_SRC:.c=.o)

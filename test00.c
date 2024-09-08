@@ -14,7 +14,11 @@ int main(){
     node = NULL;
     push(&node, 1);
     push(&node, 2);
-    printf("%d", len(node));
+    push(&node, 3);
+    insert(&node,2,100);
+    printf("length %d\n", len(node));
+    // print_list(&node);
+    print_ptr(&node);
     // assert(2 == len(node));
     return (0);
 }
