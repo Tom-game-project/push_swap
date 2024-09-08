@@ -5,7 +5,6 @@ CFLAGS = -Wextra -Werror -Wall -g
 LIST_SRC = \
 src/list/get_back.c\
 src/list/init_node.c\
-src/list/list.c\
 src/list/push.c\
 src/list/util.c\
 src/list/pop.c\
@@ -39,8 +38,10 @@ $(MAIN_TARGET): $(MAIN_SRC) $(LIST_OBJ)
 $(LIST_NAME):$(LIST_OBJ)
 	ar -rcs $@ $^
 
-test: $(TEST) $(LIST_OBJ)
+test: $(TEST) $(LIST_NAME)
 	$(CC) $(CFLAGS) $(TEST) $(LIST_OBJ) -o $@
+	./test
+	rm test
 
 clean:
 	rm -f $(LIST_OBJ) $(LIST_NAME)
@@ -51,4 +52,4 @@ fclean: clean
 re: fclean
 	make all
 
-.PHONY: all clean fclean test
+.PHONY: all clean fclean test re

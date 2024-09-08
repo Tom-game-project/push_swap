@@ -8,8 +8,6 @@ int get_elem(t_node* node_p,int index){
     while (i < index)
     {
         i += 1;
-        if (node_p == NULL)
-            return (404); // Error!
         node_p = node_p -> back_p;
     }
     return (node_p -> i32_data);
