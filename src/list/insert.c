@@ -1,20 +1,7 @@
 #include "list.h"
+#include "private_list.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-t_node* get_raw_ptr(t_node** node_p_p , int index){
-    int i;
-
-    i = 0;
-    while (i < index)
-    {
-        i += 1;
-        if (*node_p_p == NULL)
-            return (NULL); // Error!
-        *node_p_p = (*node_p_p)->back_p;
-    }
-    return (*node_p_p);
-}
 
 /// @brief 
 /// @param node_p 
