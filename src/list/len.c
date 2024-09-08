@@ -1,7 +1,8 @@
 #include "list.h"
 #include <stdlib.h>
 
-int len(t_node *node_p){
+int len(t_node *node_p)
+{
     int i;
 
     i = 0;

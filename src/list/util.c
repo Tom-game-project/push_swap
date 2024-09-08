@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "list.h"
 
-void print_list(t_node** parent){
+void print_list(t_node** parent)
+{
     t_node* tmp_node_p;
 
     tmp_node_p = *parent;
@@ -13,7 +14,8 @@ void print_list(t_node** parent){
     printf("====\n");
 }
 
-void print_ptr(t_node** parent){
+void print_ptr(t_node** parent)
+{
     t_node* tmp_node_p;
 
     tmp_node_p = *parent;

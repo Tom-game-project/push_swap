@@ -4,7 +4,8 @@
 /// @brief malloc if error return 1 otherwise 0
 /// @param i32_data 
 /// @return 
-int push(t_node** parent_p,int i32_data){
+int push(t_node** parent_p,int i32_data)
+{
     t_node* back_node_p;
     t_node* new_node_p;
 
@@ -22,7 +23,8 @@ int push(t_node** parent_p,int i32_data){
     return (0);
 }
 
-int heappush(t_node** parent_p,int i32_data){
+int heappush(t_node** parent_p,int i32_data)
+{
     int current_index;
     int parent_index;
     t_node* parent_node;

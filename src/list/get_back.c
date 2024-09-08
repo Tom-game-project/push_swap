@@ -1,7 +1,8 @@
 #include "list.h"
 #include <stdlib.h>
 
-t_node* get_back(t_node *node_p){
+t_node* get_back(t_node *node_p)
+{
     if (node_p == NULL)
         return (node_p);
     while (node_p -> back_p != NULL)

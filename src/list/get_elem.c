@@ -1,7 +1,8 @@
 #include "list.h"
 #include <stdlib.h>
 
-int get_elem(t_node* node_p,int index){
+int get_elem(t_node* node_p,int index)
+{
     int i;
 
     i = 0;
@@ -13,7 +14,8 @@ int get_elem(t_node* node_p,int index){
     return (node_p -> i32_data);
 }
 
-t_node* get_ptr(t_node* node_p,int index){
+t_node* get_ptr(t_node* node_p,int index)
+{
     int i;
 
     i = 0;

@@ -8,7 +8,8 @@
 /// @param index 
 /// @param value 
 /// @return 
-int insert(t_node **node_p_p, int index, int value){
+int insert(t_node **node_p_p, int index, int value)
+{
     t_node* target_node;
     t_node* new_node;
     t_node* first_tmp;
@@ -17,7 +18,8 @@ int insert(t_node **node_p_p, int index, int value){
     target_node = get_raw_ptr(node_p_p,index);
     new_node = init_node(value);
     new_node->back_p = target_node;
-    if (target_node != NULL){
+    if (target_node != NULL)
+    {
         new_node->pre_p = target_node->pre_p;
         target_node->pre_p = new_node;
     }
