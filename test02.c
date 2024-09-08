@@ -20,13 +20,8 @@ int main(){
     heappush(&node,6);
     heappush(&node,4);
 
-    printf("poped%d\n",heappop(&node));
-    printf("poped%d\n",heappop(&node));
-    printf("poped%d\n",heappop(&node));
-    printf("poped%d\n",heappop(&node));
-    printf("poped%d\n",heappop(&node));
+    while (len(node) != 0)
+        printf("poped%d\n",heappop(&node));
 
-    // print_list(&node);
-    print_ptr(&node);
     return (0);
 }
