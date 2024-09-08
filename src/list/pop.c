@@ -74,7 +74,7 @@ int __pop_proc(t_node** node_p_p, int last_index)
         {
             if (left_item < current_item)
             {
-                assignment(node_p_p,current_index,left_item);
+                set_num(node_p_p,current_index,left_item);
                 current_index = child_index;
             }
             break;
@@ -82,13 +82,13 @@ int __pop_proc(t_node** node_p_p, int last_index)
         int right_item = get_elem(*node_p_p,child_index + 1);
         if (right_item < current_item && right_item < left_item)
         {
-            assignment(node_p_p,current_index,right_item);
+            set_num(node_p_p,current_index,right_item);
             current_index = child_index + 1;
             continue;
         }
         else if (right_item < current_item || left_item < current_item)
         {
-            assignment(node_p_p,current_index,left_item);
+            set_num(node_p_p,current_index,left_item);
             current_index = child_index;
             continue;
         }
@@ -115,7 +115,7 @@ int heappop(t_node** node_p_p)
     new_head = pop(node_p_p,last_index);
     insert(node_p_p,0,new_head);
     current_index = __pop_proc(node_p_p, last_index);
-    assignment(node_p_p,current_index ,new_head);
+    set_num(node_p_p,current_index ,new_head);
     return (rvalue);
 }
 

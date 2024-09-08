@@ -10,7 +10,7 @@ int main(){
     push(&node,2);
     push(&node,3);
     push(&node,4);
-    assignment(&node,4,100);
+    set_num(&node,4,100);
     print_ptr(&node);
     return (0);
 }

@@ -19,7 +19,7 @@ int pop(t_node **node_p_p,int index);
 t_node* pop_elem(t_node **node_p_p);
 t_node* pop_index_elem(t_node** node_p_p,int index);
 // set
-void assignment(t_node** node_p_p,int index, int value);
+void set_num(t_node** node_p_p,int index, int value);
 // heap
 int heappush(t_node** parent_p,int i32_data);
 int heappop(t_node** node_p_p);
