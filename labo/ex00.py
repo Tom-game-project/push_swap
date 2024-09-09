@@ -121,6 +121,20 @@ def swap_stack_b_2(ps:push_swap, index_a, index_b, stack_b_length):
     for i in range(index_a):
         ps.run(instruction.pb)
 
+def swap_stack_b_3(ps:push_swap, index_a, index_b):
+    for i in range(index_a):
+        ps.run(instruction.pa)
+    for i in range(index_b - index_a - 1):
+        ps.run(instruction.sb)
+        ps.run(instruction.pa)
+    ps.run(instruction.sb)
+    ps.run(instruction.rb)
+    for i in range(index_b - index_a - 1):
+        ps.run(instruction.pb)
+    ps.run(instruction.rrb)
+    for i in range(index_a):
+        ps.run(instruction.pb)
+
 
 def test00():
     psw = push_swap([2,1,3,6,5,8])
@@ -163,8 +177,17 @@ def test03():
     print(psw.stack_b)
     print("real step", psw.step)
 
+def test04():
+    psw = push_swap([])
+    psw.stack_b = [i for i in range(10)]
+    swap_stack_b_0(psw, 2, 5)
+    print(list(range(10)))
+    print(psw.stack_b)
+    print("real step", psw.step)
+
 if __name__ == "__main__":
     # test00()
     # test01()
     # test02()
-    test03()
+    # test03()
+    test04()
