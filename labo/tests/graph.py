@@ -2,17 +2,48 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 
+import itertools
+import pprint
+from labo import optimized_swap,push_swap
 # from mpl_toolkits.mplot3d import Axes3D
 
 matplotlib.use('TkAgg')
 
+def swap_overall() -> list[tuple[int, str, tuple[int,int]]]:
+    rlist:list[tuple[int, str, tuple[int,int]]] = []
+    for (index_a, index_b) in itertools.combinations((i for i in range(50)), 2):
+        # ここで不得意な手を探す
+        psw = push_swap([],print_flag = False)
+        psw.stack_b = [i for i in range(100)]
+        function_name, step = optimized_swap(psw, index_a, index_b, len(psw.stack_b))
+        # print(psw.stack_b)
+        rlist.append((
+            step,
+            function_name,
+            (index_a, index_b)
+        ))
+     
+    # pprint.pprint(
+    #     sorted(rlist, key= lambda a: a[0])[::-1][:30])
+    return rlist
+
+
+index_a_list = []
+index_b_list = []
+steps = []
+for (step, funcname, (index_a, index_b)) in swap_overall():
+    index_a_list.append(index_a)
+    index_b_list.append(index_b)
+    steps.append(step)
+    
+
 # データの準備
-x = np.array([1, 2, 3, 4, 5])
-y = np.array([1, 2, 3, 4, 5])
+x = np.array(index_a_list)
+y = np.array(index_b_list)
 z = np.zeros_like(x)  # 棒の底の高さ（すべて0に設定）
 
 dx = dy = np.ones_like(x)  # 棒の幅
-dz = np.array([1, 2, 3, 4, 5])  # 棒の高さ
+dz = np.array(steps)  # 棒の高さ
 
 # グラフの設定
 fig = plt.figure()
@@ -22,9 +53,9 @@ ax = fig.add_subplot(111, projection='3d')
 ax.bar3d(x, y, z, dx, dy, dz, color='blue', alpha=0.7)
 
 # 軸ラベル
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label (Height)')
+ax.set_xlabel('index_a')
+ax.set_ylabel('index_b')
+ax.set_zlabel('step')
 
 # グラフを表示
 plt.show()
