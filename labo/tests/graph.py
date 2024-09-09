@@ -7,7 +7,7 @@ import itertools
 from labo import optimized_swap,push_swap
 # from mpl_toolkits.mplot3d import Axes3D
 
-matplotlib.use('TkAgg')
+matplotlib.use('Qt5Agg')
 
 COLORS = ['red', 'green', 'blue', 'yellow', 'purple']
 FUNC_COLOR = {
