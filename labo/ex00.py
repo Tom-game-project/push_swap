@@ -68,7 +68,6 @@ class push_swap:
         print(command.name)
 
 
-
 def swap_stack_b_0(ps:push_swap,index_a, index_b):
     # step index_b * 2 + 4
     print("step predict", index_b * 2 + 4)
@@ -102,6 +101,25 @@ def swap_stack_b_1(ps:push_swap, index_a, index_b, stack_b_length):
     for i in range(b + 1):
         ps.run(instruction.pb)
         ps.run(instruction.rb)
+
+def swap_stack_b_2(ps:push_swap, index_a, index_b, stack_b_length):
+    print("step predict",2*(index_a + 1) + 6 * (stack_b_length - index_b))
+    for i in range(index_a + 1):
+        ps.run(instruction.pa)
+    for i in range(stack_b_length - index_b):
+        ps.run(instruction.rrb)
+        ps.run(instruction.pa)
+        ps.run(instruction.ra)
+    ps.run(instruction.pb)
+    ps.run(instruction.rb)
+    ps.run(instruction.rra)
+    ps.run(instruction.pb)
+    for i in range(stack_b_length - index_b - 1):
+        ps.run(instruction.rra)
+        ps.run(instruction.pb)
+        ps.run(instruction.rb)
+    for i in range(index_a):
+        ps.run(instruction.pb)
 
 
 def test00():
@@ -137,8 +155,16 @@ def test02():
     print(psw.stack_b)
     print("real step", psw.step)
 
+def test03():
+    psw = push_swap([])
+    psw.stack_b = [i for i in range(100)]
+    swap_stack_b_2(psw, 2, 99, len(psw.stack_b))
+    print(list(range(10)))
+    print(psw.stack_b)
+    print("real step", psw.step)
 
 if __name__ == "__main__":
     # test00()
     # test01()
-    test02()
+    # test02()
+    test03()
