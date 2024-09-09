@@ -1,4 +1,6 @@
 from enum import Enum,auto
+import itertools
+import pprint
 
 class instruction(Enum):
     sa = auto()
@@ -11,10 +13,11 @@ class instruction(Enum):
     rrb = auto()
 
 class push_swap:
-    def __init__(self,stack_a:list[int]):
+    def __init__(self, stack_a:list[int], print_flag:bool = True):
         self.stack_a = stack_a
         self.stack_b = []
         self.step = 0
+        self.print_flag = print_flag
 
     def sa(self):
         if 2 <= len(self.stack_a):
@@ -65,12 +68,12 @@ class push_swap:
                 self.rrb()
             case _:
                 raise BaseException("Error!")
-        print(command.name)
+        if self.print_flag:
+            print(command.name)
 
 
-def swap_stack_b_0(ps:push_swap,index_a, index_b):
-    # step index_b * 2 + 4
-    print("step predict", index_b * 2 + 4)
+def swap_stack_b_0(ps:push_swap, index_a:int, index_b:int, _:int) -> tuple[str, int]:
+    # print("step predict", index_b * 2 + 4)
     for i in range(index_a + 1):
         ps.run(instruction.pa)
     for i in range(index_b - index_a):
@@ -82,13 +85,13 @@ def swap_stack_b_0(ps:push_swap,index_a, index_b):
         ps.run(instruction.rrb)
     for i in range(index_a + 1):
         ps.run(instruction.pb)
+    return "swap_stack_b_0", ps.step
 
-def swap_stack_b_1(ps:push_swap, index_a, index_b, stack_b_length):
-    print("step predict",4 * stack_b_length + 2 - 2 * (index_a + index_b))
+def swap_stack_b_1(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> tuple[str, int]:
+    # print("step predict", 4 * stack_b_length + 2 - 2 * (index_a + index_b))
     a = stack_b_length - index_a - 1
     b = stack_b_length - index_b - 1
-    # print("step predict", 2 * (a + b) + 6)
-    for i in range(b + 1): # 2*(b+1)
+    for i in range(b + 1): 
         ps.run(instruction.rrb)
         ps.run(instruction.pa)
     for i in range(a - b): 
@@ -101,9 +104,10 @@ def swap_stack_b_1(ps:push_swap, index_a, index_b, stack_b_length):
     for i in range(b + 1):
         ps.run(instruction.pb)
         ps.run(instruction.rb)
+    return "swap_stack_b_1", ps.step
 
-def swap_stack_b_2(ps:push_swap, index_a, index_b, stack_b_length):
-    print("step predict",2*(index_a + 1) + 6 * (stack_b_length - index_b))
+def swap_stack_b_2(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> tuple[str, int]:
+    # print("step predict", 2 * (index_a + 1) + 6 * (stack_b_length - index_b))
     for i in range(index_a + 1):
         ps.run(instruction.pa)
     for i in range(stack_b_length - index_b):
@@ -120,8 +124,10 @@ def swap_stack_b_2(ps:push_swap, index_a, index_b, stack_b_length):
         ps.run(instruction.rb)
     for i in range(index_a):
         ps.run(instruction.pb)
+    return "swap_stack_b_2", ps.step
 
-def swap_stack_b_3(ps:push_swap, index_a, index_b):
+def swap_stack_b_3(ps:push_swap, index_a:int, index_b:int, _:int) -> tuple[str, int]:
+    # print("step predict", 3 * index_b - index_a)
     for i in range(index_a):
         ps.run(instruction.pa)
     for i in range(index_b - index_a - 1):
@@ -134,6 +140,27 @@ def swap_stack_b_3(ps:push_swap, index_a, index_b):
     ps.run(instruction.rrb)
     for i in range(index_a):
         ps.run(instruction.pb)
+    return "swap_stack_b_3", ps.step
+
+def optimized_swap(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> tuple[str, int]:
+    # t = (f, g)
+    # t[0] = f(a:int, b:int, c:int) -> int
+    # t[1] = g(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> (str, step)
+    func_ptrs:tuple = [
+        (lambda _index_a,index_b,_stack_b_length:index_b * 2 + 4 ,
+         swap_stack_b_0), 
+        (lambda index_a,index_b,stack_b_length:4 * stack_b_length + 2 - 2 * (index_a + index_b),
+         swap_stack_b_1),
+        (lambda index_a,index_b,stack_b_length:2 * (index_a + 1) + 6 * (stack_b_length - index_b),
+         swap_stack_b_2), 
+        (lambda index_a,index_b,_stack_b_length:3 * index_b - index_a,
+         swap_stack_b_3), 
+    ]
+
+    swap_func = min(func_ptrs,key=lambda a:a[0](index_a, index_b, stack_b_length))
+    function_name,step = swap_func[1](ps,index_a, index_b, stack_b_length)
+    return function_name, step 
+
 
 
 def test00():
@@ -185,9 +212,35 @@ def test04():
     print(psw.stack_b)
     print("real step", psw.step)
 
+def test05():
+    psw = push_swap([])
+    psw.stack_b = [i for i in range(100)]
+    optimized_swap(psw, 2, 99, len(psw.stack_b))
+    print(psw.stack_b)
+    print("real step", psw.step)
+
+def test06():
+    rlist = []
+    for (index_a, index_b) in itertools.combinations((i for i in range(100)), 2):
+        # ここで不得意な手を探す
+        psw = push_swap([],print_flag = False)
+        psw.stack_b = [i for i in range(100)]
+        function_name, step = optimized_swap(psw, index_a, index_b, len(psw.stack_b))
+        # print(psw.stack_b)
+        rlist.append((
+            step,
+            function_name,
+            (index_a, index_b)
+        ))
+    pprint.pprint(
+        sorted(rlist, key= lambda a: a[0])[::-1][:10]
+    )
+
 if __name__ == "__main__":
     # test00()
     # test01()
     # test02()
     # test03()
-    test04()
+    # test04()
+    # test05()
+    test06()
