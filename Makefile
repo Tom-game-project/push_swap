@@ -31,8 +31,8 @@ all: $(MAIN_TARGET)
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(MAIN_TARGET): $(MAIN_SRC) $(LIST_OBJ)
-	$(CC) $(CFLAGS) $(MAIN_SRC) $(LIST_OBJ) -o $@
+$(MAIN_TARGET): $(MAIN_SRC) $(LIST_NAME)
+	$(CC) $(CFLAGS) $(MAIN_SRC) $(LIST_NAME) -o $@
 
 
 $(LIST_NAME):$(LIST_OBJ)
@@ -40,8 +40,9 @@ $(LIST_NAME):$(LIST_OBJ)
 
 test: $(TEST) $(LIST_NAME)
 	rm -f test
-	$(CC) $(CFLAGS) $(TEST) $(LIST_OBJ) -o $@
+	$(CC) $(CFLAGS) $(TEST) $(LIST_NAME) -o $@
 	./test
+	valgrind ./test
 
 clean:
 	rm -f $(LIST_OBJ) $(LIST_NAME)
