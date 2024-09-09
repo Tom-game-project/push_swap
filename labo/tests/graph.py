@@ -3,18 +3,17 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 import itertools
-import pprint
 from labo import optimized_swap,push_swap
 # from mpl_toolkits.mplot3d import Axes3D
 
 matplotlib.use('TkAgg')
 
-def swap_overall() -> list[tuple[int, str, tuple[int,int]]]:
+def swap_overall(length:int) -> list[tuple[int, str, tuple[int,int]]]:
     rlist:list[tuple[int, str, tuple[int,int]]] = []
-    for (index_a, index_b) in itertools.combinations((i for i in range(50)), 2):
+    for (index_a, index_b) in itertools.combinations((i for i in range(length)), 2):
         # ここで不得意な手を探す
         psw = push_swap([],print_flag = False)
-        psw.stack_b = [i for i in range(100)]
+        psw.stack_b = [i for i in range(length)]
         function_name, step = optimized_swap(psw, index_a, index_b, len(psw.stack_b))
         # print(psw.stack_b)
         rlist.append((
@@ -31,7 +30,9 @@ def swap_overall() -> list[tuple[int, str, tuple[int,int]]]:
 index_a_list = []
 index_b_list = []
 steps = []
-for (step, funcname, (index_a, index_b)) in swap_overall():
+for (step, funcname, (index_a, index_b)) in swap_overall(50):
+    # print("-----------------")
+    # print(step, funcname, (index_a, index_b))
     index_a_list.append(index_a)
     index_b_list.append(index_b)
     steps.append(step)
