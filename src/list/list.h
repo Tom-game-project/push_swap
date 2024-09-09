@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:29 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 21:19:16 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:48:37 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_node{
 	t_node	*pre_p;
 	t_node	*back_p;
 }	t_node;
-
 
 t_node	*init_node(int i32_data);
 t_node	*get_back(t_node *node_p_p);

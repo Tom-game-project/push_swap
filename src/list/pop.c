@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:32 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 21:35:31 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:50:05 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 /// @brief return head data and remove it
 /// @return 
-int	pop(t_node **node_p_p, int index){
+int	pop(t_node **node_p_p, int index)
+{
 	int		rvalue;
 	t_node	*head_p;
 
@@ -63,7 +64,8 @@ t_node	*pop_index_elem(t_node **node_p_p, int index)
 	r_node->pre_p->back_p = r_node->back_p;
 	if (r_node->back_p != NULL)
 		r_node->back_p->pre_p = r_node->pre_p;
-	r_node->pre_p = r_node->back_p = NULL;
+	r_node->pre_p = NULL;
+	r_node->back_p = NULL;
 	*node_p_p = first_node;
 	return (r_node);
 }

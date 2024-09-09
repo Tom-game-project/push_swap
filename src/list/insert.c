@@ -6,14 +6,13 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:24 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 21:14:38 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:48:17 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 #include "private_list.h"
 #include <stdlib.h>
-
 
 /// @brief 
 /// @param node_p 
@@ -27,7 +26,7 @@ int	insert(t_node **node_p_p, int index, int value)
 	t_node	*first_tmp;
 
 	first_tmp = *node_p_p;
-	target_node = get_raw_ptr(node_p_p,index);
+	target_node = get_raw_ptr(node_p_p, index);
 	new_node = init_node(value);
 	new_node->back_p = target_node;
 	if (target_node != NULL)
@@ -44,4 +43,3 @@ int	insert(t_node **node_p_p, int index, int value)
 		*node_p_p = new_node;
 	return (0);
 }
-
