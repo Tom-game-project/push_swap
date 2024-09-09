@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+from matplotlib.lines import Line2D  # 凡例のダミー用
 
 import itertools
 from labo import optimized_swap,push_swap
@@ -46,7 +47,7 @@ for (step, funcname, (index_a, index_b)) in swap_overall(50):
     index_b_list.append(index_b)
     steps.append(step)
     colors.append(FUNC_COLOR[funcname])
-    
+# 凡例を作成するためのダミーオブジェクト
 
 # データの準備
 x = np.array(index_a_list)
@@ -59,6 +60,12 @@ dz = np.array(steps)  # 棒の高さ
 # グラフの設定
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
+
+legend_elements = []
+for key in FUNC_COLOR.keys():
+    legend_elements.append(Line2D([0],[0],color=FUNC_COLOR[key],lw=4,label=key))
+# 凡例を表示
+ax.legend(handles=legend_elements, loc='best')
 
 # 3D棒グラフを描画
 ax.bar3d(x, y, z, dx, dy, dz, color=colors, alpha=0.7)
