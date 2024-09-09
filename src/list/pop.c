@@ -8,7 +8,7 @@ int pop(t_node **node_p_p,int index){
     int rvalue;
     t_node* head_p;
 
-    head_p = pop_index_elem(node_p_p,index);
+    head_p = pop_index_elem(node_p_p, index);
     rvalue = head_p->i32_data;
     free(head_p);
     return (rvalue);
@@ -47,7 +47,7 @@ t_node* pop_index_elem(t_node** node_p_p,int index)
     if (index == 0)
         return (pop_elem(node_p_p));
     first_node = *node_p_p;
-    r_node = get_raw_ptr(node_p_p,index);
+    r_node = get_raw_ptr(node_p_p, index);
     r_node->pre_p->back_p = r_node->back_p;
     if (r_node->back_p != NULL)
         r_node->back_p->pre_p = r_node->pre_p;
@@ -56,10 +56,14 @@ t_node* pop_index_elem(t_node** node_p_p,int index)
     return (r_node);
 }
 
-
-int __pop_swap_helper(t_node** node_p_p,int current_index, int child_index)
+/// @brief return `child_index`
+/// @param node_p_p 
+/// @param current_index 
+/// @param child_index 
+/// @return 
+int __pop_swap_helper(t_node** node_p_p, int current_index, int child_index)
 {
-    set_num(node_p_p, current_index, get_elem(*node_p_p,child_index));
+    set_num(node_p_p, current_index, get_elem(*node_p_p, child_index));
     return (child_index);
 }
 
@@ -103,9 +107,9 @@ int heappop(t_node** node_p_p)
     if (len(*node_p_p) == 0)
         return rvalue;
     last_index = len(*node_p_p) - 1;
-    new_head = pop(node_p_p,last_index);
-    insert(node_p_p,0,new_head);
-    set_num(node_p_p, __pop_proc(node_p_p, last_index),new_head);
+    new_head = pop(node_p_p, last_index);
+    insert(node_p_p, 0, new_head);
+    set_num(node_p_p, __pop_proc(node_p_p, last_index), new_head);
     return (rvalue);
 }
 
