@@ -2,6 +2,7 @@ from enum import Enum,auto
 import itertools
 import pprint
 
+
 class instruction(Enum):
     sa = auto()
     sb = auto()
@@ -72,6 +73,33 @@ class push_swap:
             print(command.name)
 
 
+def swap_checker(data:list, index_a:int, index_b:int):
+    # this is test function
+    base_iter = list(i for i,_ in enumerate(data))
+    x:list[bool] = map(lambda a:a[0] != a[1], zip(base_iter, data))
+    count = 0
+    for i,j in enumerate(x):
+        if j:
+            match count:
+                case 0:
+                    if data[i] == index_b:
+                        count += 1
+                    else:
+                        # 位置は正しい値が違う
+                        return False
+                case 1:
+                    if data[i] == index_a:
+                        count += 1
+                    else:
+                        # 位置は正しい値が違う
+                        return False
+                case _:
+                    # 他の部分に影響している
+                    return False
+        else:
+            pass
+    return count == 2
+
 def swap_stack_b_0(ps:push_swap, index_a:int, index_b:int, _:int) -> tuple[str, int]:
     # print("step predict", index_b * 2 + 4)
     for i in range(index_a + 1):
@@ -85,6 +113,7 @@ def swap_stack_b_0(ps:push_swap, index_a:int, index_b:int, _:int) -> tuple[str, 
         ps.run(instruction.rrb)
     for i in range(index_a + 1):
         ps.run(instruction.pb)
+    assert swap_checker(ps.stack_b, index_a, index_b)
     return "swap_stack_b_0", ps.step
 
 def swap_stack_b_1(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> tuple[str, int]:
@@ -104,6 +133,7 @@ def swap_stack_b_1(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -
     for i in range(b + 1):
         ps.run(instruction.pb)
         ps.run(instruction.rb)
+    assert swap_checker(ps.stack_b, index_a, index_b)
     return "swap_stack_b_1", ps.step
 
 def swap_stack_b_2(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> tuple[str, int]:
@@ -124,6 +154,7 @@ def swap_stack_b_2(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -
         ps.run(instruction.rb)
     for i in range(index_a):
         ps.run(instruction.pb)
+    assert swap_checker(ps.stack_b, index_a, index_b)
     return "swap_stack_b_2", ps.step
 
 def swap_stack_b_3(ps:push_swap, index_a:int, index_b:int, _:int) -> tuple[str, int]:
@@ -140,6 +171,7 @@ def swap_stack_b_3(ps:push_swap, index_a:int, index_b:int, _:int) -> tuple[str, 
     ps.run(instruction.rrb)
     for i in range(index_a):
         ps.run(instruction.pb)
+    assert swap_checker(ps.stack_b, index_a, index_b)
     return "swap_stack_b_3", ps.step
 
 def optimized_swap(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -> tuple[str, int]:
@@ -162,7 +194,6 @@ def optimized_swap(ps:push_swap, index_a:int, index_b:int, stack_b_length:int) -
     return function_name, step 
 
 
-
 def test00():
     psw = push_swap([2,1,3,6,5,8])
     psw.sa()
@@ -179,6 +210,16 @@ def test00():
     # psw.pa()
     psw.run(instruction.pa)
     print(psw.stack_a)
+
+def checker_test00():
+    # Ok
+    assert swap_checker([2,1,0], 0, 2)
+    assert swap_checker([0,8,2,3,4,5,6,7,1,9], 1, 8)
+    assert swap_checker([0,1,5,3,4,2,6,7,8,9], 2, 5)
+    # Err
+    assert not swap_checker([0,1,2,3,4,5,6,7,8,9], 2, 5)
+    assert not swap_checker([0,1,5,3,4,2,6,7,9,8], 2, 5)
+
 
 def test01():
     psw = push_swap([])
@@ -233,8 +274,10 @@ def test06():
             (index_a, index_b)
         ))
     pprint.pprint(
-        sorted(rlist, key= lambda a: a[0])[::-1][:10]
+        sorted(rlist, key= lambda a: a[0])[::-1][:30]
     )
+
+
 
 if __name__ == "__main__":
     # test00()
