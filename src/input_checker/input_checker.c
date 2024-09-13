@@ -2,7 +2,7 @@
 
 #define NUM_CHAR 48
 
-static int is_num_str(char c)
+static int is_num_char(char c)
 {
     int i;
 
@@ -25,7 +25,7 @@ int is_valid_string(char *str)
         str++;
     while (*str != '\0')
     {
-        if (!is_num_str(*str))
+        if (!is_num_char(*str))
             return (0);
         flag = 1;
         str++;
