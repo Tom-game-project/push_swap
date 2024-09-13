@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test01.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/09 19:51:02 by tmuranak          #+#    #+#             */
+/*   Updated: 2024/09/09 22:06:27 by tmuranak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "src/list/list.h"
 #include <stdlib.h>
 #include "stdio.h"
 #include <assert.h>
 
 /// @brief pop test 
-/// @return 
-int main(){
-    t_node *node;
+/// @return
+int	main()
+{
+	t_node	*node;
 
-    // push(&node, 1);
-    // print_list(&node);
-    node = NULL;
-    for (int i = 0;i < 10; i++){
+	node = NULL;
+	for (int i = 0;i < 10; i++){
         push(&node, i);
     }
 
