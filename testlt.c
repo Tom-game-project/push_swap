@@ -5,7 +5,7 @@
 int main(int argc, char *a[]){
     if (argc == 3){
         if (is_valid_all(argc, a)){
-            printf("lt %d\n",lt_abs(a[1],a[2]));
+            printf("lt %d\n",lt(a[1],a[2]));
         }else {
             printf("wrong args (0)\n");
         }
