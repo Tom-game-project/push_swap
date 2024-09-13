@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/list/list.h"
+// #include "src/list/list.h"
+#include "src/input_checker/input_checker.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-
-int main(){
-    t_node *node;
-
-    node = NULL;
-    push(&node, 1);
-    push(&node, 2);
-    print_list(&node);
+int main(int argc, char *argv[])
+{
+    printf("hello %d\n", is_valid_all(argc, argv));
+    for (int i = 0; i < argc; i++){
+        printf("str %s; is valid?%d;\n", argv[i], is_valid_string(argv[i]));
+    }
     return (0);
 }

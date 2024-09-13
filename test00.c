@@ -17,8 +17,7 @@
 
 /// @brief
 /// @return 
-int	main()
-
+int	main(){
 	t_node	*node;
 
     // push(&node, 1);
