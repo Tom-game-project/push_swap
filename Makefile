@@ -42,7 +42,7 @@ test: $(TEST) $(LIST_NAME)
 	rm -f test
 	$(CC) $(CFLAGS) $(TEST) $(LIST_NAME) -o $@
 	./test
-	valgrind ./test
+	valgrind  --leak-check=full ./test
 
 clean:
 	rm -f $(LIST_OBJ) $(LIST_NAME)
