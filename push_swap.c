@@ -12,12 +12,16 @@
 
 // #include "src/list/list.h"
 #include "src/input_checker/input_checker.h"
+#include "src/output/output.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 int main(int argc, char *argv[])
 {
-    printf("hello %d\n", is_valid_all(argc, argv));
+    if (!is_valid_all(argc, argv)){
+        print_error();
+        return (1);
+    }
     for (int i = 0; i < argc; i++){
         printf("str %s; is valid?%d;\n", argv[i], is_valid_string(argv[i]));
     }

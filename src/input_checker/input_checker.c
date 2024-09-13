@@ -21,9 +21,6 @@ int is_valid_string(char *str)
     int flag;
 
     flag = 0;
-    if (*str == '\0')
-        return (0);
-    str++;
     if (*str == '-')
         str++;
     while (*str != '\0')
