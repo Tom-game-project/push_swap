@@ -11,10 +11,10 @@ matplotlib.use('Qt5Agg')
 
 COLORS = ['red', 'green', 'blue', 'yellow', 'purple']
 FUNC_COLOR = {
-    "swap_stack_b_0":COLORS[0],
-    "swap_stack_b_1":COLORS[1],
-    "swap_stack_b_2":COLORS[2],
-    "swap_stack_b_3":COLORS[3],
+    "swap_stack_b_0": COLORS[0],
+    "swap_stack_b_1": COLORS[1],
+    "swap_stack_b_2": COLORS[2],
+    "swap_stack_b_3": COLORS[3],
 }
 
 def swap_overall(length:int) -> list[tuple[int, str, tuple[int,int]]]:
@@ -47,7 +47,6 @@ for (step, funcname, (index_a, index_b)) in swap_overall(50):
     index_b_list.append(index_b)
     steps.append(step)
     colors.append(FUNC_COLOR[funcname])
-# 凡例を作成するためのダミーオブジェクト
 
 # データの準備
 x = np.array(index_a_list)
