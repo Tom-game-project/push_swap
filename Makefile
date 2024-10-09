@@ -56,7 +56,7 @@ $(OUTPUT_NAME)\
 $(STRNUMTOOLS_NAME)
 
 # MAIN push swap
-MAIN_SRC = push_swap.c
+MAIN_SRC = src/push_swap.c
 MAIN_TARGET = push_swap
 
 all: $(MAIN_TARGET)
@@ -84,8 +84,8 @@ $(STRNUMTOOLS_NAME):$(STRNUMTOOLS_OBJ)
 test: $(TEST) $(ARCHIVES)
 	rm -f test
 	$(CC) $(CFLAGS) $(TEST) $(ARCHIVES) -o $@
-# ./test
-# valgrind  --leak-check=full ./test
+	./test
+	valgrind  --leak-check=full ./test
 
 clean:
 	rm -f $(OBJS) $(ARCHIVES)
