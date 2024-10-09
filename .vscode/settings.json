@@ -2,6 +2,7 @@
     "files.associations": {
         "list.h": "c",
         "private_list.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "strnumtools.h": "c"
     }
 }

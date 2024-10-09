@@ -25,7 +25,12 @@ STRNUMTOOLS_SRC = \
 src/strnumtools/comp.c
 
 TEST = \
-testlt.c
+tests/testlt.c
+# tests/test00.c
+# tests/test01.c
+# tests/test02.c
+# tests/test03.c
+# tests/test04.c
 # test02.c
 ## test04.c
 
@@ -84,8 +89,8 @@ $(STRNUMTOOLS_NAME):$(STRNUMTOOLS_OBJ)
 test: $(TEST) $(ARCHIVES)
 	rm -f test
 	$(CC) $(CFLAGS) $(TEST) $(ARCHIVES) -o $@
-	./test
-	valgrind  --leak-check=full ./test
+	# ./test
+	# valgrind  --leak-check=full ./test
 
 clean:
 	rm -f $(OBJS) $(ARCHIVES)

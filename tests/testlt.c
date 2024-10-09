@@ -1,5 +1,5 @@
-#include "src/strnumtools/strnumtools.h"
-#include "src/input_checker/input_checker.h"
+#include "../src/strnumtools/strnumtools.h"
+#include "../src/input_checker/input_checker.h"
 #include <stdio.h>
 
 int main(int argc, char *a[]){

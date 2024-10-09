@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/list/list.h"
+#include "../src/list/list.h"
 #include <stdlib.h>
 #include <stdio.h>
 

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test02.c                                           :+:      :+:    :+:   */
+/*   test01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 19:51:06 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 22:06:49 by tmuranak         ###   ########.fr       */
+/*   Created: 2024/09/09 19:51:02 by tmuranak          #+#    #+#             */
+/*   Updated: 2024/09/09 22:06:27 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/list/list.h"
+#include "../src/list/list.h"
 #include <stdlib.h>
 #include "stdio.h"
 #include <assert.h>
 
-/// @brief heappop test 
-/// @return 
+/// @brief pop test 
+/// @return
 int	main()
 {
-    t_node *node;
+	t_node	*node;
 
-    node = NULL;
-    // for (int i = 0;i < 10; i++){
-    //     heappush(&node, i);
-    // }
-    heappush(&node,5);
-    heappush(&node,2);
-    heappush(&node,7);
-    heappush(&node,3);
-    heappush(&node,1);
-    heappush(&node,6);
-    heappush(&node,4);
+	node = NULL;
+	for (int i = 0;i < 10; i++){
+        push(&node, i);
+    }
 
-    while (len(node) != 0)
-        printf("poped%d\n",heappop(&node));
-
+    t_node* tmp_node = pop_elem(&node);
+    while (tmp_node != NULL){
+        printf("poped ptr %p\n",tmp_node);
+        printf("poped elem %d\n",tmp_node->i32_data);
+        free(tmp_node);
+        tmp_node = pop_elem(&node);
+    }
+    printf("length %d\n", len(node));
+    // assert(2 == len(node));
     return (0);
 }
