@@ -22,7 +22,7 @@ typedef struct s_node{
 }	t_node;
 
 t_node	*init_node(int i32_data);
-t_node	*get_back(t_node *node_p_p);
+// t_node	*get_back(t_node *node_p_p);
 int		push(t_node **parent_p, int i32_data);
 int		insert(t_node **node_p, int index, int value);
 
@@ -40,6 +40,9 @@ int		heappop(t_node **node_p_p);
 
 // length
 int		len(t_node *node_p);
+
+// clear
+int clear(t_node **lst);
 
 // test function
 void	print_list(t_node	**parent);

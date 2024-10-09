@@ -13,6 +13,10 @@
 #include <stdio.h>
 #include "list.h"
 
+/**
+ * test print_list
+ * @brief free:not required
+ */
 void	print_list(t_node **parent)
 {
 	t_node	*tmp_node_p;

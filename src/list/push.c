@@ -13,9 +13,27 @@
 #include "list.h"
 #include <stdlib.h>
 
-/// @brief malloc if error return 1 otherwise 0
-/// @param i32_data 
-/// @return 
+/**
+ * private get_back
+ * @brief free: not required
+ */
+static t_node	*get_back(t_node *node_p)
+{
+	if (node_p == NULL)
+		return (node_p);
+	while (node_p -> back_p != NULL)
+		node_p = node_p->back_p;
+	return (node_p);
+}
+
+/** 
+ * pub push
+ * 
+ * @brief free: required (depend on \`init_node\` function)
+ * @param parent_p
+ * @param i32_data 
+ * @return
+ */
 int	push(t_node **parent_p, int i32_data)
 {
 	t_node	*back_node_p;
@@ -35,6 +53,10 @@ int	push(t_node **parent_p, int i32_data)
 	return (0);
 }
 
+/**
+ * pub heappush
+ * @brief free: required (depend on \`push\` function)
+ */
 int	heappush(t_node **parent_p, int i32_data)
 {
 	int		current_index;

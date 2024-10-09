@@ -14,8 +14,14 @@
 #include "private_list.h"
 #include <stdlib.h>
 
-/// @brief return head data and remove it
-/// @return 
+
+/**
+ * pub pop
+ * @brief free: not required(depend on \`pop_index_elem\` function.
+ *        but buff is freed by this funcction)
+ * return head data and remove it
+ * 
+ */
 int	pop(t_node **node_p_p, int index)
 {
 	int		rvalue;
@@ -27,9 +33,11 @@ int	pop(t_node **node_p_p, int index)
 	return (rvalue);
 }
 
-/// @brief you must free returned object by yourself
-/// @param node_p_p 
-/// @return 
+/**
+ * pub pop_elem
+ * @brief free:required
+ * @param node_p_p 
+ */
 t_node	*pop_elem(t_node **node_p_p)
 {
 	t_node	*head_p;

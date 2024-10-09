@@ -13,10 +13,18 @@
 #include "list.h"
 #include <stdlib.h>
 
-/// @brief  node_p_p[index] = value
-/// @param node_p_p 
-/// @param index 
-/// @param value 
+
+
+/**
+ * pub set_num 
+ * @brief free: required(depend on \`push\` function)
+ *        ```c
+ *        node_p_p[index] = value
+ *        ```
+ * @param node_p_p 
+ * @param index 
+ * @param value 
+ */
 void	set_num(t_node **node_p_p, int index, int value)
 {
 	if (index == len(*node_p_p))

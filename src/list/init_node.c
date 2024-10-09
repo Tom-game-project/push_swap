@@ -16,6 +16,12 @@
 /// @brief return type Result<t_node,NULL>
 /// @param i32_data 
 /// @return 
+
+/**
+ * pub init_node
+ * @brief free: required
+ * 
+ */
 t_node	*init_node(int i32_data)
 {
 	t_node	*node;
