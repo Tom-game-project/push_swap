@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "../../src/output/output.h"
 
 
 static void h_s_1(int a,int b)
@@ -8,23 +8,23 @@ static void h_s_1(int a,int b)
     i = 0;
     while (i < b + 1)
     {
-        printf("rrb\n");
-        printf("pa\n");
+        put_str("rrb\n");
+        put_str("pa\n");
         i++;
     }
     i = 0;
     while (i < a - b)
     {
-        printf("rrb\n");
+        put_str("rrb\n");
         i++;
     }
 }
 
 static void m_h_s_1()
 {
-    printf("pb\n");
-    printf("rb\n");
-    printf("pa\n");
+    put_str("pb\n");
+    put_str("rb\n");
+    put_str("pa\n");
 }
 
 static void i_h_s_1(int a,int b)
@@ -34,14 +34,14 @@ static void i_h_s_1(int a,int b)
     i = 0;
     while (i < a - b - 1)
     {
-        printf("rb\n");
+        put_str("rb\n");
         i++;
     }
     i = 0;
     while (i < b + 1)
     {
-        printf("pb\n");
-        printf("rb\n");
+        put_str("pb\n");
+        put_str("rb\n");
         i++;
     }
 }
