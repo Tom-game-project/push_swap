@@ -89,8 +89,9 @@ class push_swap:
                 self.rra()
             case "rrb":
                 self.rrb()
-            # case _:
-            #     raise BaseException("Error!")
+            case _:
+                # raise BaseException("Error!")
+                self.step -= 1
         # if self.print_flag:
         #     print(command.name)
 

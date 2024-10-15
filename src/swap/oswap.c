@@ -30,7 +30,6 @@ void oswap(int index_a,int index_b, int stack_b_length)
     a[1] = 4 * stack_b_length + 2 - 2 * (index_a + index_b);
     a[2] = 2 * (index_a + 1) + 6 * (stack_b_length - index_b);
     a[3] = 3 * index_b - index_a;
-
     i = 0;
     min = a[i];
     while (i <= 3)

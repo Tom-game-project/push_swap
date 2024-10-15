@@ -46,7 +46,7 @@ static void i_h_s_3(int index_a,int index_b)
     }
 }
 
-/// @brief  必要なステップ数 
+/// @brief  必要なステップ数 3 * index_b - index_a
 /// @param index_a 
 /// @param index_b 
 void swap_stack_b_3(int index_a,int index_b)

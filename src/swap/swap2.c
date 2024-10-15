@@ -49,7 +49,7 @@ static void i_h_s_2(int index_a,int index_b, int stack_b_length)
     }
 }
 
-/// @brief  必要なステップ数 index_b * 2 + 4
+/// @brief  必要なステップ数 2 * (index_a + 1) + 6 * (stack_b_length - index_b)
 /// @param index_a 
 /// @param index_b 
 void swap_stack_b_2(int index_a,int index_b, int stack_b_length)
