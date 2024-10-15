@@ -105,15 +105,13 @@ int	__pop_proc(t_node **node_p_p, int last_index)
 	{
 		if (last_index <= child_index)
 		{
-			if (get_elem(*node_p_p, child_index) < current_item)
+			if (get_elem(*node_p_p, child_index) > current_item)
 				current_index = __helper(node_p_p, current_index, child_index);
 			break ;
 		}
-		if (get_elem(*node_p_p, child_index + 1) < current_item && \
-		get_elem(*node_p_p, child_index + 1) < get_elem(*node_p_p, child_index))
+		if (get_elem(*node_p_p, child_index + 1) > current_item && get_elem(*node_p_p, child_index + 1) > get_elem(*node_p_p, child_index))
 			current_index = __helper(node_p_p, current_index, child_index + 1);
-		else if (get_elem(*node_p_p, child_index + 1) < current_item || \
-		get_elem(*node_p_p, child_index) < current_item)
+		else if (get_elem(*node_p_p, child_index + 1) > current_item || get_elem(*node_p_p, child_index) > current_item)
 			current_index = __helper(node_p_p, current_index, child_index);
 		else
 			break ;

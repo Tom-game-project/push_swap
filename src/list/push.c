@@ -77,7 +77,7 @@ int	heappush(t_node **parent_p, int i32_data)
 	{
 		parent_index = (current_index - 1) / 2;
 		parent_node = get_ptr(*parent_p, parent_index);
-		if (i32_data < parent_node -> i32_data)
+		if (i32_data > parent_node -> i32_data)
 		{   
 			// swap current_index <-> parent_index
 			oswap(parent_index, current_index, len(*parent_p));
