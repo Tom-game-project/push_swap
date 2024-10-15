@@ -130,8 +130,6 @@ int	heappop(t_node **node_p_p)
 	int	rvalue;
 	int	last_index;
 	int	new_head;
-	// test
-	int pop_proc_tmp;
 
 	rvalue = pop(node_p_p, 0);
 	put_str("pa\n");
@@ -141,9 +139,7 @@ int	heappop(t_node **node_p_p)
 	new_head = pop(node_p_p, last_index);
 	insert(node_p_p, 0, new_head);
 	put_str("rrb\n");
-	pop_proc_tmp = __pop_proc(node_p_p, last_index);
-	// swap_stack_b_0(pop_proc_tmp, new_head);
-	set_num(node_p_p, pop_proc_tmp, new_head);
+	set_num(node_p_p, __pop_proc(node_p_p, last_index), new_head);
 	return (rvalue);
 }
 
