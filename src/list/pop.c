@@ -14,10 +14,9 @@
 #include "private_list.h"
 
 #include "../../src/swap/swap.h"
+#include "../../src/output/output.h"
 #include <stdlib.h>
 
-// test
-#include <stdio.h>
 
 /**
  * pub pop
@@ -135,13 +134,13 @@ int	heappop(t_node **node_p_p)
 	int pop_proc_tmp;
 
 	rvalue = pop(node_p_p, 0);
-	printf("pa\n");
+	put_str("pa\n");
 	if (len(*node_p_p) == 0)
 		return (rvalue);
 	last_index = len(*node_p_p) - 1;
 	new_head = pop(node_p_p, last_index);
 	insert(node_p_p, 0, new_head);
-	printf("rrb\n");
+	put_str("rrb\n");
 	pop_proc_tmp = __pop_proc(node_p_p, last_index);
 	// swap_stack_b_0(pop_proc_tmp, new_head);
 	set_num(node_p_p, pop_proc_tmp, new_head);

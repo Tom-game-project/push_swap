@@ -14,6 +14,8 @@
 #include <stdlib.h>
 
 #include "../../src/swap/swap.h"
+#include "../../src/output/output.h"
+
 // test
 #include <stdio.h>
 
@@ -68,8 +70,8 @@ int	heappush(t_node **parent_p, int i32_data)
 	t_node	*parent_node;
 
 	push(parent_p, i32_data);
-	printf("pb\n");
-	printf("rb\n");
+	put_str("pb\n");
+	put_str("rb\n");
 	current_index = len(*parent_p) - 1;
 	while (0 < current_index)
 	{
