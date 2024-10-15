@@ -86,12 +86,15 @@ def test06():
         sorted(rlist, key= lambda a: a[0])[::-1][:30]
     )
 
+def test07():
+    psw = push_swap([5,2,7,3,1,6,4])
+    
 
 if __name__ == "__main__":
-    # test00()
+    test00()
     # test01()
     # test02()
     # test03()
     # test04()
     # test05()
-    test06()
+    # test06()

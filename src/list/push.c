@@ -13,6 +13,10 @@
 #include "list.h"
 #include <stdlib.h>
 
+#include "../../src/swap/swap.h"
+// test
+#include <stdio.h>
+
 /**
  * private get_back
  * @brief free: not required
@@ -64,19 +68,24 @@ int	heappush(t_node **parent_p, int i32_data)
 	t_node	*parent_node;
 
 	push(parent_p, i32_data);
+	printf("pb\n");
+	printf("rb\n");
 	current_index = len(*parent_p) - 1;
 	while (0 < current_index)
 	{
 		parent_index = (current_index - 1) / 2;
 		parent_node = get_ptr(*parent_p, parent_index);
 		if (i32_data < parent_node -> i32_data)
-		{
+		{   
+			// swap current_index <-> parent_index
+			swap_stack_b_0(parent_index, current_index);
 			set_num(parent_p, current_index, parent_node -> i32_data);
 			current_index = parent_index;
 			continue ;
 		}
 		break ;
 	}
+	// swap_stack_b_0(current_index, parent_index);
 	set_num(parent_p, current_index, i32_data);
 	return (0);
 }

@@ -70,6 +70,30 @@ class push_swap:
         if self.print_flag:
             print(command.name)
 
+    def runcmd(self, command:str):
+        self.step += 1
+        match command:
+            case "sa":
+                self.sa()
+            case "sb":
+                self.sb()
+            case "pa":
+                self.pa()
+            case "pb":
+                self.pb()
+            case "ra":
+                self.ra()
+            case "rb":
+                self.rb()
+            case "rra":
+                self.rra()
+            case "rrb":
+                self.rrb()
+            # case _:
+            #     raise BaseException("Error!")
+        # if self.print_flag:
+        #     print(command.name)
+
 
 def swap_checker(data:list, index_a:int, index_b:int):
     # this is test function

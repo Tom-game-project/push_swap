@@ -12,7 +12,7 @@
 
 #include "../src/list/list.h"
 #include <stdlib.h>
-#include "stdio.h"
+#include <stdio.h>
 #include <assert.h>
 
 /// @brief
@@ -31,5 +31,6 @@ int	main(){
     // print_list(&node);
     print_ptr(&node);
     // assert(2 == len(node));
+    clear(&node);
     return (0);
 }

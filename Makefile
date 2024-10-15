@@ -3,7 +3,7 @@ CFLAGS = -Wextra -Werror -Wall -g
 
 # `list` module sources
 LIST_SRC = \
-src/list/get_back.c\
+src/list/clear.c\
 src/list/init_node.c\
 src/list/push.c\
 src/list/util.c\
@@ -17,6 +17,9 @@ src/list/insert.c
 INPUT_CHECK_SRC = \
 src/input_checker/input_checker.c
 
+SWAP_SRC = \
+src/swap/swap0.c
+
 # `output` module sources
 OUTPUT_SRC = \
 src/output/output.c
@@ -25,16 +28,15 @@ STRNUMTOOLS_SRC = \
 src/strnumtools/comp.c
 
 TEST = \
-tests/testlt.c
+tests/test02.c
 # tests/test00.c
 # tests/test01.c
-# tests/test02.c
+# tests/testlt.c
 # tests/test03.c
 # tests/test04.c
-# test02.c
-## test04.c
 
 # object files
+SWAP_OBJ = $(SWAP_SRC:.c=.o)
 LIST_OBJ = $(LIST_SRC:.c=.o)
 INPUT_CHECK_OBJ = $(INPUT_CHECK_SRC:.c=.o)
 OUTPUT_OBJ = $(OUTPUT_SRC:.c=.o)
@@ -42,12 +44,14 @@ STRNUMTOOLS_OBJ = $(STRNUMTOOLS_SRC:.c=.o)
 
 # object files
 OBJS = \
+$(SWAP_OBJ)\
 $(LIST_OBJ)\
 $(INPUT_CHECK_OBJ)\
 $(OUTPUT_OBJ)\
 $(STRNUMTOOLS_OBJ)
 
 # archive files
+SWAP_NAME = swap.a
 LIST_NAME = list.a
 INPUT_CHECK_NAME = input_checker.a
 OUTPUT_NAME = output.a
@@ -55,6 +59,7 @@ STRNUMTOOLS_NAME = strnumtools.a
 
 # archives files
 ARCHIVES = \
+$(SWAP_NAME)\
 $(LIST_NAME)\
 $(INPUT_CHECK_NAME)\
 $(OUTPUT_NAME)\
@@ -73,7 +78,11 @@ $(MAIN_TARGET): $(MAIN_SRC) $(ARCHIVES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # archive make rules
-$(LIST_NAME):$(LIST_OBJ)
+
+$(SWAP_NAME): $(SWAP_OBJ)
+	ar -rcs $@ $^
+
+$(LIST_NAME):$(SWAP_OBJ) $(LIST_OBJ) 
 	ar -rcs $@ $^
 
 $(INPUT_CHECK_NAME):$(INPUT_CHECK_OBJ)
@@ -89,7 +98,7 @@ $(STRNUMTOOLS_NAME):$(STRNUMTOOLS_OBJ)
 test: $(TEST) $(ARCHIVES)
 	rm -f test
 	$(CC) $(CFLAGS) $(TEST) $(ARCHIVES) -o $@
-	# ./test
+	./test
 	# valgrind  --leak-check=full ./test
 
 clean:

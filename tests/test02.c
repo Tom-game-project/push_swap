@@ -34,7 +34,8 @@ int	main()
     heappush(&node,4);
 
     while (len(node) != 0)
-        printf("poped%d\n",heappop(&node));
+        heappop(&node);
+        // printf("poped%d\n",heappop(&node));
 
     return (0);
 }
