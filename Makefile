@@ -18,7 +18,11 @@ INPUT_CHECK_SRC = \
 src/input_checker/input_checker.c
 
 SWAP_SRC = \
-src/swap/swap0.c
+src/swap/swap0.c\
+src/swap/swap1.c\
+src/swap/swap2.c\
+src/swap/swap3.c\
+src/swap/oswap.c
 
 # `output` module sources
 OUTPUT_SRC = \

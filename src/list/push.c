@@ -80,7 +80,7 @@ int	heappush(t_node **parent_p, int i32_data)
 		if (i32_data < parent_node -> i32_data)
 		{   
 			// swap current_index <-> parent_index
-			swap_stack_b_0(parent_index, current_index);
+			oswap(parent_index, current_index, len(*parent_p));
 			set_num(parent_p, current_index, parent_node -> i32_data);
 			current_index = parent_index;
 			continue ;
