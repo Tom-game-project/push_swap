@@ -14,6 +14,7 @@
 #include "../src/input_checker/input_checker.h"
 #include "../src/output/output.h"
 #include "../src/strnumtools/strnumtools.h"
+#include "../src/list/list.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -46,23 +47,28 @@ int main(int argc, char *argv[])
 {
     int *stack;
     int i;
+    t_node *node;
 
     // if (!is_valid_all(argc, argv)){
     //     print_error();
     //     return (1);
     // }
 
-    stack = create_list(argc, argv);
     // for (int i = 0; i < argc; i++){
     //     printf("str %s; is valid?%d;\n", argv[i], is_valid_string(argv[i]));
     // }
+    stack = create_list(argc, argv);
     
     i = 0;
+    node = NULL;
     while (i + 1 < argc)
     {
-        printf("%s %d\n",argv[i+1], stack[i]);
+        // printf("%s %d\n",argv[i+1], stack[i]);
+        heappush(&node,stack[i]);
         i++;
     }
+    while (len(node) != 0)
+        heappop(&node);
     free(stack);
     return (0);
 }

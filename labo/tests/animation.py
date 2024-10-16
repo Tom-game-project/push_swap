@@ -3,13 +3,12 @@ from itertools import zip_longest
 import sys
 import subprocess
 import time
+from random import shuffle
 
-def animation3():
-    a = [5,2,7,3,1,6,4]
-    out = subprocess.run(["./../test"],encoding="utf-8",stdout=subprocess.PIPE)
+def animation3(operations:list[str]):
     # print(out.stdout.split('\n'))
     psw = push_swap(a)
-    for cmd in out.stdout.split('\n'):
+    for cmd in operations:
         sys.stdout.write("stack_a" + f"{psw.stack_a}".rjust(50)+ "\n")
         sys.stdout.write("stack_b" + f"{psw.stack_b}".rjust(50))
         sys.stdout.flush()
@@ -21,7 +20,7 @@ def animation3():
 
 
 def screen_stack(stack:list[int],max_value:int) -> list[str]:
-    return [("#" * i).ljust(max_value," ") for i in stack]
+    return [("=" * i).ljust(max_value," ") for i in stack]
 
 def draw_draft(stack_a:list[int], stack_b:list[int], max_value:int) -> list[str]:
     return [row_a + '|' + row_b + '|' for row_a,row_b in zip_longest(
@@ -31,13 +30,11 @@ def draw_draft(stack_a:list[int], stack_b:list[int], max_value:int) -> list[str]
         )
     ]
 
-def animation4():
-    a = [5,2,7,3,1,6,4]
-    out = subprocess.run(["./../test"],encoding="utf-8",stdout=subprocess.PIPE)
-    max_value = max(a)
-    l = len(a) + 1
+def animation4(listlength:int, max_value_of_list:int, operations:list[str]):
+    max_value = max_value_of_list
+    l = listlength + 1
     psw = push_swap(a)
-    for cmd in out.stdout.split('\n'):
+    for cmd in operations:
         dd = draw_draft(
             psw.stack_a,
             psw.stack_b,
@@ -52,8 +49,18 @@ def animation4():
         sys.stdout.flush()
         psw.runcmd(cmd)
         sys.stdout.write("\033[F" * l)
-        time.sleep(0.1)
+        time.sleep(0.01)
 
 
 if __name__ == "__main__":
-    animation4()
+    a = list(range(30))
+    shuffle(a)
+    out = subprocess.run([
+            "./../push_swap",
+            *list(map(str, a))
+        ],
+        encoding="utf-8",
+        stdout=subprocess.PIPE
+    )
+    # animation3(out.stdout.split("\n"))
+    animation4(len(a),max(a),out.stdout.split("\n"))

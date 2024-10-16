@@ -86,15 +86,15 @@ t_node	*pop_index_elem(t_node **node_p_p, int index)
 /// @param current_index 
 /// @param child_index 
 /// @return 
-static int	__helper(t_node **node_p_p, int current_index, int child_index)
+static int	__helper(t_node **node_p_p, int current_index, int child_index,int stack_b_length)
 {
 	// printf("(pop) swap index %d index %d\n", current_index, child_index);
-	swap_stack_b_0(current_index, child_index);
+	oswap(current_index, child_index, stack_b_length);
 	set_num(node_p_p, current_index, get_elem(*node_p_p, child_index));
 	return (child_index);
 }
 
-int	__pop_proc(t_node **node_p_p, int last_index)
+int	__pop_proc(t_node **node_p_p, int last_index,int stack_b_length)
 {
 	int	current_index;
 	int	current_item;
@@ -106,13 +106,13 @@ int	__pop_proc(t_node **node_p_p, int last_index)
 		if (last_index <= child_index)
 		{
 			if (get_elem(*node_p_p, child_index) > current_item)
-				current_index = __helper(node_p_p, current_index, child_index);
+				current_index = __helper(node_p_p, current_index, child_index,stack_b_length);
 			break ;
 		}
 		if (get_elem(*node_p_p, child_index + 1) > current_item && get_elem(*node_p_p, child_index + 1) > get_elem(*node_p_p, child_index))
-			current_index = __helper(node_p_p, current_index, child_index + 1);
+			current_index = __helper(node_p_p, current_index, child_index + 1, stack_b_length);
 		else if (get_elem(*node_p_p, child_index + 1) > current_item || get_elem(*node_p_p, child_index) > current_item)
-			current_index = __helper(node_p_p, current_index, child_index);
+			current_index = __helper(node_p_p, current_index, child_index, stack_b_length);
 		else
 			break ;
 	}
@@ -128,6 +128,7 @@ int	heappop(t_node **node_p_p)
 	int	rvalue;
 	int	last_index;
 	int	new_head;
+	int stack_b_length;
 
 	rvalue = pop(node_p_p, 0);
 	put_str("pa\n");
@@ -137,7 +138,8 @@ int	heappop(t_node **node_p_p)
 	new_head = pop(node_p_p, last_index);
 	insert(node_p_p, 0, new_head);
 	put_str("rrb\n");
-	set_num(node_p_p, __pop_proc(node_p_p, last_index), new_head);
+	stack_b_length = len(*node_p_p);
+	set_num(node_p_p, __pop_proc(node_p_p, last_index, stack_b_length), new_head);
 	return (rvalue);
 }
 
