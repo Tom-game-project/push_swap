@@ -1,7 +1,7 @@
 #include "swap.h"
 #include "../../src/output/output.h"
 
-void run_swap(int index_a,int index_b, int stack_b_length, int i)
+static void run_swap(int index_a,int index_b, int stack_b_length, int i)
 {
     if (i == 0)
         swap_stack_b_0(index_a,index_b);
@@ -15,7 +15,7 @@ void run_swap(int index_a,int index_b, int stack_b_length, int i)
         put_str("idiot\n");
 }
 
-/// @brief  ここで最適なswap方法を選択します
+/// @brief  最適なswap方法を選択して実行します.
 /// @param index_a 
 /// @param index_b 
 /// @param stack_b_length 

@@ -1,5 +1,3 @@
-
-
 #define NUM_CHAR 48
 
 static int is_num_char(char c)

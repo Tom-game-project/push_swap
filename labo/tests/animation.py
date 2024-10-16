@@ -1,12 +1,8 @@
 from labo import push_swap
-# from labo import visualizer
 from itertools import zip_longest
-from pprint import pprint
-# import argparse
 import sys
 import subprocess
 import time
-import sys
 
 def animation3():
     a = [5,2,7,3,1,6,4]
@@ -25,7 +21,7 @@ def animation3():
 
 
 def screen_stack(stack:list[int],max_value:int) -> list[str]:
-    return [("-" * i).ljust(max_value," ") for i in stack]
+    return [("#" * i).ljust(max_value," ") for i in stack]
 
 def draw_draft(stack_a:list[int], stack_b:list[int], max_value:int) -> list[str]:
     return [row_a + '|' + row_b + '|' for row_a,row_b in zip_longest(
@@ -47,7 +43,6 @@ def animation4():
             psw.stack_b,
             max_value
         )
-        # sys.stdout.write(" " * (max_value * 2 + 2) +"\n")
         sys.stdout.write("stack_a".center(max_value)+ '|'+ "stack_b".center(max_value) +"\n")
         for row in dd:
             sys.stdout.write(row+"\n")
@@ -57,7 +52,7 @@ def animation4():
         sys.stdout.flush()
         psw.runcmd(cmd)
         sys.stdout.write("\033[F" * l)
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 
 if __name__ == "__main__":

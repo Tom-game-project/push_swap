@@ -4,6 +4,7 @@
         "private_list.h": "c",
         "stdlib.h": "c",
         "strnumtools.h": "c",
-        "swap.h": "c"
+        "swap.h": "c",
+        "input_checker.h": "c"
     }
 }

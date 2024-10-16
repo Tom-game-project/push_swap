@@ -102,8 +102,8 @@ $(STRNUMTOOLS_NAME):$(STRNUMTOOLS_OBJ)
 test: $(TEST) $(ARCHIVES)
 	rm -f test
 	$(CC) $(CFLAGS) $(TEST) $(ARCHIVES) -o $@
-	./test
-	# valgrind  --leak-check=full ./test
+	# ./test
+	valgrind  --leak-check=full ./test
 
 clean:
 	rm -f $(OBJS) $(ARCHIVES)
