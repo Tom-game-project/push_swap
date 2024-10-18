@@ -5,18 +5,18 @@ import subprocess
 import time
 from random import shuffle
 
-def animation3(operations:list[str]):
-    # print(out.stdout.split('\n'))
-    psw = push_swap(a)
-    for cmd in operations:
-        sys.stdout.write("stack_a" + f"{psw.stack_a}".rjust(50)+ "\n")
-        sys.stdout.write("stack_b" + f"{psw.stack_b}".rjust(50))
-        sys.stdout.flush()
-        psw.runcmd(cmd)
-        sys.stdout.write("\033[F")
-        time.sleep(0.1)
-    sys.stdout.write("stack_a" + f"{psw.stack_a}".rjust(50)+ "\n")
-    sys.stdout.write("stack_b" + f"{psw.stack_b}".rjust(50)+ "\n")
+# def animation3(operations:list[str]):
+#     # print(out.stdout.split('\n'))
+#     psw = push_swap(a)
+#     for cmd in operations:
+#         sys.stdout.write("stack_a" + f"{psw.stack_a}".rjust(50)+ "\n")
+#         sys.stdout.write("stack_b" + f"{psw.stack_b}".rjust(50))
+#         sys.stdout.flush()
+#         psw.runcmd(cmd)
+#         sys.stdout.write("\033[F")
+#         time.sleep(0.1)
+#     sys.stdout.write("stack_a" + f"{psw.stack_a}".rjust(50)+ "\n")
+#     sys.stdout.write("stack_b" + f"{psw.stack_b}".rjust(50)+ "\n")
 
 
 def screen_stack(stack:list[int],max_value:int) -> list[str]:
@@ -30,10 +30,10 @@ def draw_draft(stack_a:list[int], stack_b:list[int], max_value:int) -> list[str]
         )
     ]
 
-def animation4(listlength:int, max_value_of_list:int, operations:list[str]):
-    max_value = max_value_of_list
-    l = listlength + 1
-    psw = push_swap(a)
+def animation4(lst:list[int], operations:list[str]):
+    max_value = max(lst)
+    l = len(lst) + 1
+    psw = push_swap(lst)
     for cmd in operations:
         dd = draw_draft(
             psw.stack_a,
@@ -49,11 +49,11 @@ def animation4(listlength:int, max_value_of_list:int, operations:list[str]):
         sys.stdout.flush()
         psw.runcmd(cmd)
         sys.stdout.write("\033[F" * l)
-        time.sleep(0.01)
+        time.sleep(0.5)
 
 
 if __name__ == "__main__":
-    a = list(range(30))
+    a = list(range(100))
     shuffle(a)
     out = subprocess.run([
             "./../push_swap",
@@ -63,4 +63,4 @@ if __name__ == "__main__":
         stdout=subprocess.PIPE
     )
     # animation3(out.stdout.split("\n"))
-    animation4(len(a),max(a),out.stdout.split("\n"))
+    animation4(a, out.stdout.split("\n"))

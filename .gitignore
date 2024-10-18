@@ -1,6 +1,7 @@
 checker_linux
 .venv
 push_swap
+__pycache__
 test
 *.out
 *.o
