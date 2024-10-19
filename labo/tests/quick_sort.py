@@ -59,56 +59,56 @@ def incr_mapping(lst:list):
         i += 1
     return rlist
 
-
-def a_to_b(a:list[int],b:list[int]):
+"""
+a -> b
+"""
+def move_stack(a:list[int],b:list[int]):
     i = 1
     while len(a) != 0:
         if not b or (a[0] * i < b[0] * i):
             if not b :
                 if a[0] * i < a[-1] * i:
-                    b.insert(0, a.pop(-1))
+                    b.insert(0, a.pop(-1)) # rra pb
                 else:
-                    b.insert(0, a.pop(0))
+                    b.insert(0, a.pop(0)) # pb
             elif a[0] * i < a[-1] * i < b[0] * i:
-                b.insert(0, a.pop(-1))
+                b.insert(0, a.pop(-1)) # rra pb
             else:
-                b.insert(0, a.pop(0))
+                b.insert(0, a.pop(0)) # pb
         else:
             i *= -1
-        print(a,b)
+        # print(a,b)
 
-def b_to_a(a:list[int],b:list[int]):
-    i = 1
-    while len(b) != 0:
-        if not a or (b[0] * i < a[0] * i):
-            if not a :
-                if b[0] * i < b[-1] * i:
-                    a.insert(0, b.pop(-1))
-                else:
-                    a.insert(0, b.pop(0))
-            elif b[0] * i < b[-1] * i < a[0] * i:
-                a.insert(0, b.pop(-1))
-            else:
-                a.insert(0, b.pop(0))
-        else:
-            i *= -1
-        print(a,b)
 
-    
+def merge_rule(a:list[int], b:list[int]):
+    while not all(map(lambda i:i == "+", incr_mapping(a))):
+        move_stack(a,b)
+        move_stack(b,a)
+    print("sort -> ok")
+
 
 def test01():
-    random.seed(257)
+    # random.seed(257)
     b = []
     a = []
     # set number
     a = list(range(10))
     random.shuffle(a)
-    a = [7,2,1,5,8,9,6,3,4,10]
+    # a = [7,2,1,5,8,9,6,3,4,10]
+    # a = [7,2,1,5,8,9,6,3,4]
     # a = [9,8,6,5,1,2,3,4,7,10]
     print(a)
     il = incr_mapping(a)
-    a_to_b(a,b)
-    b_to_a(a,b)
+
+    for i in range(100):
+        b = []
+        a = []
+        # set number
+        a = list(range(10))
+        random.shuffle(a)
+        merge_rule(a,b)
+    print(all(map(lambda i:i == "+", incr_mapping(a))))
+
 
 
 
