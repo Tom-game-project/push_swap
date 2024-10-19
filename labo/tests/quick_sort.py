@@ -64,20 +64,18 @@ a -> b
 """
 def move_stack(a:list[int],b:list[int]):
     i = 1
+    if a[0] * i < a[-1] * i:
+        b.insert(0, a.pop(-1)) # rra pb
+    else:
+        b.insert(0, a.pop(0)) # pb
     while len(a) != 0:
-        if not b or (a[0] * i < b[0] * i):
-            if not b :
-                if a[0] * i < a[-1] * i:
-                    b.insert(0, a.pop(-1)) # rra pb
-                else:
-                    b.insert(0, a.pop(0)) # pb
-            elif a[0] * i < a[-1] * i < b[0] * i:
+        if a[0] * i < b[0] * i:
+            if a[0] * i < a[-1] * i < b[0] * i:
                 b.insert(0, a.pop(-1)) # rra pb
             else:
                 b.insert(0, a.pop(0)) # pb
         else:
             i *= -1
-        # print(a,b)
 
 
 def merge_rule(a:list[int], b:list[int]):
