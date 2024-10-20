@@ -1,6 +1,7 @@
 import random
 import animation
 import copy
+from pprint import pprint
 
 
 def test00():
@@ -62,27 +63,63 @@ def incr_mapping(lst:list):
 """
 a -> b
 """
-def move_stack(a:list[int],b:list[int]):
+def move_stack(a:list[int],b:list[int], f:str,ops:list[str]):
     i = 1
     if a[0] * i < a[-1] * i:
         b.insert(0, a.pop(-1)) # rra pb
+        if f == "a": # if  from a
+            ops.append("rra")
+            ops.append("pb")
+        else:
+            ops.append("rrb")
+            ops.append("pa")
     else:
         b.insert(0, a.pop(0)) # pb
+        if f == "a":
+            ops.append("pb")
+        else:
+            ops.append("pa")
     while len(a) != 0:
         if a[0] * i < b[0] * i:
             if a[0] * i < a[-1] * i < b[0] * i:
                 b.insert(0, a.pop(-1)) # rra pb
+                if f == "a": # if  from a
+                    ops.append("rra")
+                    ops.append("pb")
+                else:
+                    ops.append("rrb")
+                    ops.append("pa")
             else:
                 b.insert(0, a.pop(0)) # pb
+                if f == "a":
+                    ops.append("pb")
+                else:
+                    ops.append("pa")
+        elif a[-1] * i < b[0] * i:
+            b.insert(0, a.pop(-1)) # rra pb
+            if f == "a": # if  from a
+                ops.append("rra")
+                ops.append("pb")
+            else:
+                ops.append("rrb")
+                ops.append("pa")
+        elif 1 < len(a) and a[1] * i < b[0] * i:
+            b.insert(0, a.pop(1))
+            if f == "a":
+                ops.append("sa")
+                ops.append("pb")
+            else:
+                ops.append("sb")
+                ops.append("pa")
         else:
             i *= -1
 
 
-def merge_rule(a:list[int], b:list[int]):
+def merge_rule(a:list[int], b:list[int],ops:list[str]):
     while not all(map(lambda i:i == "+", incr_mapping(a))):
-        move_stack(a,b)
-        move_stack(b,a)
-    print("sort -> ok")
+        move_stack(a,b,"a",ops)
+        move_stack(b,a,"b",ops)
+    # print("sort -> ok")
 
 
 def test01():
@@ -108,7 +145,24 @@ def test01():
     print(all(map(lambda i:i == "+", incr_mapping(a))))
 
 
+def test02():
+    b = []
+    a = []
+    ops = []
+    # set number
+    random.seed(10)
+    a = list(range(100))
+    random.shuffle(a)
+    copied_a = copy.deepcopy(a)
+    print(a)
+    # set number
+    merge_rule(a,b,ops)
+    pprint(ops)
+    # print("step",len(ops))
+    animation.animation4(copied_a, ops)
+
+
 
 
 if __name__ == "__main__":
-    test01()
+    test02()

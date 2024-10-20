@@ -49,7 +49,7 @@ def animation4(lst:list[int], operations:list[str]):
         sys.stdout.flush()
         psw.runcmd(cmd)
         sys.stdout.write("\033[F" * l)
-        time.sleep(0.5)
+        time.sleep(0.01)
 
 
 if __name__ == "__main__":

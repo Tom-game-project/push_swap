@@ -39,12 +39,20 @@ class push_swap:
 
     def rb(self):
         self.stack_b.append(self.stack_b.pop(0))
+    
+    def rr(self):
+        self.ra()
+        self.rb()
 
     def rra(self):
         self.stack_a.insert(0,self.stack_a.pop())
 
     def rrb(self):
         self.stack_b.insert(0,self.stack_b.pop())
+
+    def rrr(self):
+        self.rra()
+        self.rrb()
 
     def run(self, command:instruction):
         self.step += 1
