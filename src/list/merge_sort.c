@@ -2,51 +2,37 @@
 #include "list.h"
 
 
-static void move_stack(t_node **a, t_node **b)
+/// @brief 
+/// @param f from
+/// @param t to
+static void move_stack(t_node **f, t_node **t)
 {
     int i;
-    
+
     i = 1;
-    if (get_elem(*a, 0) * i < get_elem(*a, len(*a) - 1) * i)
-        insert(b, 0, pop(a, len(*a) - 1));
+    if (get_elem(*f, 0) * i < get_elem(*f, len(*f) - 1) * i)
+        insert(t, 0, pop(f, len(*f) - 1));
     else
-        insert(b, 0, pop(a, 0));
-    while (*a != NULL){
-        if (get_elem(*a, 0) * i < get_elem(*b, 0) * i)
+        insert(t, 0, pop(f, 0));
+    while (*f != NULL){
+        if (get_elem(*f, 0) * i < get_elem(*t, 0) * i)
         {
-            if (get_elem(*a, 0) * i < get_elem(*a, len(*a) - 1) * i && \
-                get_elem(*a, len(*a) - 1) * i < get_elem(*b, 0) * i)
-                insert(b, 0, pop(a, len(*a) - 1));
+            if (get_elem(*f, 0) * i < get_elem(*f, len(*f) - 1) * i && \
+                get_elem(*f, len(*f) - 1) * i < get_elem(*t, 0) * i)
+                insert(t, 0, pop(f, len(*f) - 1));
             else
-                insert(b, 0, pop(a, 0));
+                insert(t, 0, pop(f, 0));
         }
         else 
             i *= -1;
     }
 }
 
-static int is_sorted(t_node *ra)
-{
-    int a_length;
-    int i;
-
-    a_length = len(ra);
-    i = 0;
-    while (i < a_length - 1)
-    {
-        if (get_elem(ra, i) < get_elem(ra, i + 1))
-            i++;
-        else
-            return (0);
-    }
-    return (1);
-}
-
 void merge_sort(t_node **node_a,t_node **node_b)
 {
     while (/*not*/ !is_sorted (*node_a))
     {
-        move_stack(node_a, node_b);
-        move_stack(node_b, node_a);
+        move_stack(node_a, node_b); // from node_a to node_b
+        move_stack(node_b, node_a); // from node_b to node_a
     }
 }

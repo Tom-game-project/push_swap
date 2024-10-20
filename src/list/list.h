@@ -39,8 +39,10 @@ int		heappush(t_node **parent_p, int i32_data);
 int		heappop(t_node **node_p_p);
 
 // merge sort
-
 void merge_sort(t_node **node_a,t_node **node_b);
+
+// is_sorted
+int is_sorted(t_node *ra);
 
 // length
 int		len(t_node *node_p);
