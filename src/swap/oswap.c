@@ -28,7 +28,6 @@ void oswap(int index_a,int index_b, int stack_b_length)
     int min;
     int min_index;
 
-    // コストの計算
     a[0] = index_b * 2 + 4;
     a[1] = 4 * stack_b_length + 2 - 2 * (index_a + index_b);
     a[2] = 2 * (index_a + 1) + 6 * (stack_b_length - index_b);

@@ -145,24 +145,54 @@ def test01():
     print(all(map(lambda i:i == "+", incr_mapping(a))))
 
 
+def find_nop(ops:list[str]):
+    i = 0
+    while i < len(ops) - 1:
+        if ops[i] == "pa" and ops[i + 1] == "pb":
+            return i
+        elif ops[i] == "pb" and ops[i + 1] == "pa":
+            return i
+        i += 1
+    return -1
+
+    
+
 def test02():
     b = []
     a = []
     ops = []
     # set number
-    random.seed(10)
-    a = list(range(100))
+    a = list(range(157))
     random.shuffle(a)
     copied_a = copy.deepcopy(a)
     print(a)
     # set number
     merge_rule(a,b,ops)
     pprint(ops)
+    while (n := find_nop(ops)) != -1:
+        print("find nop",n)
+        ops.pop(n)
+        ops.pop(n)
+
     # print("step",len(ops))
     animation.animation4(copied_a, ops)
 
+def test03():
+    steps = []
+    for i in range(1000):
+        b = []
+        a = []
+        ops = []
+        a = list(range(500))
+        random.shuffle(a)
+        merge_rule(a,b,ops)
+        steps.append(len(ops))
 
+    print("min",min(steps),"max",max(steps),"ave", sum(steps)/len(steps))
 
 
 if __name__ == "__main__":
-    test02()
+    test02() # アニメーション
+    # test03()
+
+

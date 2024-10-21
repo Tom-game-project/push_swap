@@ -6,6 +6,7 @@ int main()
 {
     t_node* a;
     t_node* b;
+    t_node* ops;
 
     a = NULL;
     b = NULL;
@@ -17,7 +18,7 @@ int main()
     push(&a, 4);
     push(&a, 3);
 
-    merge_sort(&a, &b);
+    merge_sort(&a, &b, &ops);
     clear(&a);
     return (0);
 }

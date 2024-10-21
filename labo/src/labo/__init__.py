@@ -26,6 +26,10 @@ class push_swap:
         if 2 <= len(self.stack_b):
             self.stack_b[0],self.stack_b[1] = self.stack_b[1], self.stack_b[0]
 
+    def ss(self):
+        self.sa()
+        self.sb()
+
     def pa(self):
         if 0 < len(self.stack_b):
             self.stack_a.insert(0,self.stack_b.pop(0))
