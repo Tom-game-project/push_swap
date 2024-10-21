@@ -13,6 +13,25 @@
 #ifndef LIST_H
 # define LIST_H
 
+// -----------------
+#define SA 0
+#define SB 1
+#define SS 2
+
+#define PA 3
+#define PB 4
+
+#define RA 5
+#define RB 6
+#define RR 7
+
+#define RRA 8
+#define RRB 9
+#define RRR 10
+// -----------------
+
+
+
 typedef struct s_node	t_node;
 
 typedef struct s_node{
@@ -39,7 +58,7 @@ int		heappush(t_node **parent_p, int i32_data);
 int		heappop(t_node **node_p_p);
 
 // merge sort
-void merge_sort(t_node **node_a,t_node **node_b);
+void merge_sort(t_node **node_a,t_node **node_b, t_node **ops);
 
 // is_sorted
 int is_sorted(t_node *ra);
