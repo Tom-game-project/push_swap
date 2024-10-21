@@ -43,11 +43,14 @@ int *create_list(int argc ,char *argv[])
     return (stack);
 }
 
+
 int main(int argc, char *argv[])
 {
     int *stack;
     int i;
-    t_node *node;
+    t_node *a;
+    t_node *b;
+    t_node *ops;
 
     // if (!is_valid_all(argc, argv)){
     //     print_error();
@@ -58,17 +61,19 @@ int main(int argc, char *argv[])
     //     printf("str %s; is valid?%d;\n", argv[i], is_valid_string(argv[i]));
     // }
     stack = create_list(argc, argv);
-    
     i = 0;
-    node = NULL;
+    a = NULL;
+    b = NULL;
+    ops = NULL;
     while (i + 1 < argc)
     {
-        // printf("%s %d\n",argv[i+1], stack[i]);
-        heappush(&node,stack[i]);
+        push(&a,stack[i]);
+	printf("stacked data %d \n", stack[i]);
         i++;
     }
-    while (len(node) != 0)
-        heappop(&node);
+    merge_sort(&a, &b, &ops); 
+    output_all_ops(&ops);
+    clear(&a);
     free(stack);
     return (0);
 }

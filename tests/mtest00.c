@@ -10,6 +10,7 @@ int main()
 
     a = NULL;
     b = NULL;
+    ops = NULL;
     push(&a, 7);
     push(&a, 8);
     push(&a, 1);
@@ -19,6 +20,8 @@ int main()
     push(&a, 3);
 
     merge_sort(&a, &b, &ops);
+    output_all_ops(&ops);
+    
     clear(&a);
     return (0);
 }

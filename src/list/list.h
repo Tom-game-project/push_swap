@@ -69,6 +69,10 @@ int		len(t_node *node_p);
 // clear
 int clear(t_node **lst);
 
+// for push swap
+
+void output_all_ops(t_node **ops);
+
 // test function
 void	print_list(t_node	**parent);
 void	print_ptr(t_node	**parent);
