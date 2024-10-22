@@ -80,6 +80,24 @@ static void print_poped(int poped)
 		put_str("Error!\n");
 }
 
+int find_nop(t_node *ops)
+{
+	int i;
+	int len_ops;
+
+	i=0;
+	len_ops = len(ops);
+	while (i < len_ops - 1)
+	{
+		if (get_elem(ops, i) == PA && get_elem(ops, i + 1) == PB)
+			return (i);
+		else if (get_elem(ops, i) == PB && get_elem(ops, i + 1) == PA)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 void output_all_ops(t_node **ops)
 {
 	int poped;
@@ -124,10 +142,18 @@ static void move_stack(t_node **f, t_node **t,char f_f, t_node** ops)
 
 void merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
 {
+	int n;
     while (/*not*/ !is_sorted (*node_a))
     {
         move_stack(node_a, node_b, 'a', ops); // from node_a to node_b
         move_stack(node_b, node_a, 'b', ops); // from node_b to node_a
+    }
+    n = find_nop(*ops);
+    while (n != -1)
+    {
+	    pop(ops, n);
+	    pop(ops, n); 
+	    n = find_nop(*ops);
     }
 }
 
