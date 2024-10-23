@@ -26,54 +26,57 @@ int *create_list(int argc ,char *argv[])
     int c;
 
     stack = (int *) malloc(sizeof(int) * (argc - 1));
-    i = 1;
-    while (i < argc)
+    if (stack == NULL)
+	    return (NULL);
+    i = 0;
+    while (++i < argc)
     {
-        j = 1;
+        j = 0;
         c = 0;
-        while (j < argc)
+        while (++j < argc)
         {
             if (lt(argv[i],argv[j]))
                c++;
-            j++;        
         }
         stack[i - 1] = argc - 1 - c;
-        i++;
     }
     return (stack);
 }
 
 
-int main(int argc, char *argv[])
+/// @brief if something wrong return 1
+int set_stack_a(t_node **a,int argc, char *argv[])
 {
     int *stack;
     int i;
+    int error_flag;
+
+    i = 0;
+     error_flag = 0;   
+    stack = create_list(argc, argv);
+    if (stack == NULL)
+	    return (1);
+    while (++i < argc)
+	    error_flag = push(a,stack[i - 1]);
+    free(stack);
+    return (error_flag);
+}
+
+int main(int argc, char *argv[])
+{
     t_node *a;
     t_node *b;
     t_node *ops;
 
-    // if (!is_valid_all(argc, argv)){
-    //     print_error();
-    //     return (1);
-    // }
-
-    // for (int i = 0; i < argc; i++){
-    //     printf("str %s; is valid?%d;\n", argv[i], is_valid_string(argv[i]));
-    // }
-    stack = create_list(argc, argv);
-    i = 0;
+    if (!is_valid_all(argc, argv))
+        return print_error();
     a = NULL;
     b = NULL;
     ops = NULL;
-    while (i + 1 < argc)
-    {
-        push(&a,stack[i]);
-	printf("stacked data %d \n", stack[i]);
-        i++;
-    }
+    if (set_stack_a(&a, argc,argv))
+        return print_error();
     merge_sort(&a, &b, &ops); 
     output_all_ops(&ops);
     clear(&a);
-    free(stack);
     return (0);
 }

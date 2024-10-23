@@ -35,11 +35,11 @@ STRNUMTOOLS_SRC = \
 src/strnumtools/comp.c
 
 TEST = \
-tests/mtest00.c
+tests/testlt.c
+# tests/mtest00.c
 # tests/test02.c
 # tests/test00.c
 # tests/test01.c
-# tests/testlt.c
 # tests/test03.c
 # tests/test04.c
 

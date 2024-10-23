@@ -1,3 +1,4 @@
+#include "../../src/strnumtools/strnumtools.h"
 #define NUM_CHAR 48
 
 static int is_num_char(char c)
@@ -31,16 +32,20 @@ int is_valid_string(char *str)
     return (flag);
 }
 
+int is_in_int_range(char *arg)
+{
+	return (lt("-2147483649", arg) && lt(arg ,"2147483648"));
+}
+
 int is_valid_all(int argc, char *argv[])
 {
     int i;
 
-    i = 1;
-    while (i < argc)
+    i = 0;
+    while (++i < argc)
     {
-        if (!is_valid_string(argv[i]))
+        if (!is_valid_string(argv[i]) || !is_in_int_range(argv[i]))
             return (0);
-        i++;
     }
     return (1);
 }
