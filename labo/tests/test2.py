@@ -1,11 +1,16 @@
 from labo import push_swap
-# import argparse
+import itertools
 import subprocess
-from random import shuffle
+
+
+def checking_input_pattern():
+    for i, j in enumerate(itertools.permutations(range(5))):
+        print(i, j)
+        testing(j)
 
 
 # 簡易的なチェッカー
-def checker(operations: list[str]):
+def checker(a: list[int], operations: list[str]):
     psw = push_swap(a)
     for cmd in operations:
         # print("stack_a", psw.stack_a)
@@ -15,20 +20,20 @@ def checker(operations: list[str]):
     # print("stack_a", psw.stack_a)
     # print("stack_b", psw.stack_b)
     print("step", psw.step)
-    if all(i < j for i, j in zip(psw.stack_a[: -1], psw.stack_a[1:])):
-        print("is sorted")
-    else:
-        print("is not sorted")
 
 
-if __name__ == "__main__":
-    a = list(range(500))
-    shuffle(a)
+def testing(a: list[int]):
+    lst = list(map(str, a))
+    print(lst)
     out = subprocess.run([
             "./../push_swap",
-            *list(map(str, a))
+            *lst
         ],
         encoding="utf-8",
         stdout=subprocess.PIPE
     )
-    checker(out.stdout.split("\n"))
+    checker(lst, out.stdout.split("\n"))
+
+
+if __name__ == "__main__":
+    checking_input_pattern()

@@ -8,8 +8,10 @@ class instruction(Enum):
     pb = auto()
     ra = auto()
     rb = auto()
+    rr = auto()
     rra = auto()
     rrb = auto()
+    rrr = auto()
 
 class push_swap:
     def __init__(self, stack_a:list[int], print_flag:bool = True):
@@ -73,10 +75,14 @@ class push_swap:
                 self.ra()
             case instruction.rb:
                 self.rb()
+            case instruction.rr:
+                self.rr()
             case instruction.rra:
                 self.rra()
             case instruction.rrb:
                 self.rrb()
+            case instruction.rrr:
+                self.rrr()
             case _:
                 raise BaseException("Error!")
         if self.print_flag:
@@ -97,10 +103,14 @@ class push_swap:
                 self.ra()
             case "rb":
                 self.rb()
+            case "rr":
+                self.rr()
             case "rra":
                 self.rra()
             case "rrb":
                 self.rrb()
+            case "rrr":
+                self.rrr()
             case _:
                 # raise BaseException("Error!")
                 self.step -= 1
