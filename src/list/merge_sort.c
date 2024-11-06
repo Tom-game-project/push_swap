@@ -98,6 +98,43 @@ int find_nop(t_node *ops)
 	return (-1);
 }
 
+int shortening_rrr(t_node *ops)
+{
+	int i;
+	int len_ops;
+
+	i=0;
+	len_ops = len(ops);
+	while (i < len_ops - 1)
+	{
+		if (get_elem(ops, i) == RRA && get_elem(ops, i + 1) == RRB)
+			return (i);
+		else if (get_elem(ops, i) == RRB && get_elem(ops, i + 1) == RRA)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int shortening_rr(t_node *ops)
+{
+	int i;
+	int len_ops;
+
+	i=0;
+	len_ops = len(ops);
+	while (i < len_ops - 1)
+	{
+		if (get_elem(ops, i) == RA && get_elem(ops, i + 1) == RB)
+			return (i);
+		else if (get_elem(ops, i) == RB && get_elem(ops, i + 1) == RA)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+
 void output_all_ops(t_node **ops)
 {
 	int poped;
@@ -122,7 +159,8 @@ static void move_stack(t_node **f, t_node **t,char f_f, t_node** ops)
         push_end(f, t, f_f, ops);
     else
         push_head(f, t, f_f, ops);
-    while (*f != NULL){
+    while (*f != NULL)
+    {
         if (get_elem(*f, 0) * i < get_elem(*t, 0) * i)
         {
             if (get_elem(*f, 0) * i < get_elem(*f, len(*f) - 1) * i && \
@@ -154,6 +192,22 @@ void merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
 	    pop(ops, n);
 	    pop(ops, n); 
 	    n = find_nop(*ops);
+    }
+    n = shortening_rrr(*ops);
+    while (n != -1)
+    {
+	    pop(ops, n);
+	    pop(ops, n); 
+	    insert(ops, n, RRR);
+	    n = shortening_rrr(*ops);
+    }
+    n = shortening_rr(*ops);
+    while (n != -1)
+    {
+	    pop(ops, n);
+	    pop(ops, n); 
+	    insert(ops, n, RR);
+	    n = shortening_rr(*ops);
     }
 }
 

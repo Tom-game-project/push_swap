@@ -43,7 +43,6 @@ int *create_list(int argc ,char *argv[])
     return (stack);
 }
 
-
 /// @brief if something wrong return 1
 int set_stack_a(t_node **a,int argc, char *argv[])
 {
@@ -80,3 +79,4 @@ int main(int argc, char *argv[])
     clear(&a);
     return (0);
 }
+
