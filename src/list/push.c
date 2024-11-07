@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:39 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 21:38:40 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:32:46 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ int	heappush(t_node **parent_p, int i32_data)
 		parent_index = (current_index - 1) / 2;
 		parent_node = get_ptr(*parent_p, parent_index);
 		if (i32_data > parent_node -> i32_data)
-		{   
-			// swap current_index <-> parent_index
+		{
 			oswap(parent_index, current_index, len(*parent_p));
 			set_num(parent_p, current_index, parent_node -> i32_data);
 			current_index = parent_index;

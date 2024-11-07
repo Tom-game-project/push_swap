@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:32 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 21:50:05 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:32:20 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	__pop_proc(t_node **node_p_p, int last_index,int stack_b_length)
 		if (last_index <= child_index)
 		{
 			if (get_elem(*node_p_p, child_index) > current_item)
-				current_index = __helper(node_p_p, current_index, child_index,stack_b_length);
+				current_index = __helper(node_p_p, current_index, child_index, stack_b_length);
 			break ;
 		}
 		if (get_elem(*node_p_p, child_index + 1) > current_item && get_elem(*node_p_p, child_index + 1) > get_elem(*node_p_p, child_index))
