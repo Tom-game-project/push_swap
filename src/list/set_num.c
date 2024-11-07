@@ -6,14 +6,12 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:41 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/09/09 21:50:35 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:16:23 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 #include <stdlib.h>
-
-
 
 /**
  * pub set_num 
