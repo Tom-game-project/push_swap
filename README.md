@@ -18,3 +18,9 @@ int main(){
     return (0);
 }
 ```
+
+## how to use 
+
+```
+./push_swap 1 3 2 5 4
+```
