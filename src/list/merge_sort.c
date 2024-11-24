@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "list.h"
+#include <stdbool.h>
 
+// test 
+#include <stdio.h>
+
+#include "list.h"
 #include "../../src/output/output.h"
 
 
@@ -24,8 +28,35 @@
  * rrb rra -> rrr
  */
 
+// 1回
+static void	push_head_to_head(t_node **f, t_node**t, char f_f, t_node **ops)
+{
+	insert(t, 0, pop(f, 0));
+	if (f_f == 'a')
+		push(ops, PB);
+	else
+		push(ops, PA);
+}
 
-static void	push_end(t_node **f, t_node**t, char f_f, t_node **ops)
+// 2回
+static void	push_second_to_head(t_node **f, t_node**t, char f_f, t_node **ops)
+{
+	insert(t, 0,pop(f, 1));
+	if (f_f == 'a')
+	{
+		push(ops, SA);
+		push(ops, PB);
+	}
+	else
+	{
+		push(ops, SB);
+		push(ops, PA);
+	}
+}
+
+
+// 2回
+static void	push_end_to_head(t_node **f, t_node**t, char f_f, t_node **ops)
 {
 	insert(t, 0, pop(f, len(*f) - 1));
 	if (f_f == 'a')
@@ -40,29 +71,60 @@ static void	push_end(t_node **f, t_node**t, char f_f, t_node **ops)
 	}
 }
 
-static void	push_head(t_node **f, t_node**t, char f_f, t_node **ops)
+
+static void push_head_to_end(t_node **f, t_node**t, char f_f, t_node **ops)
 {
-	insert(t, 0, pop(f, 0));
+	insert(t, len(*t) - 1, pop(f, 0));
 	if (f_f == 'a')
-		push(ops, PB);
-	else
+	{
 		push(ops, PA);
+		push(ops, RRB);
+	}
+	else
+	{
+		push(ops, PB);
+		push(ops, RRA);
+	}
 }
 
-static void	push_second(t_node **f, t_node**t, char f_f, t_node **ops)
+
+// 3回
+static void push_second_to_end(t_node **f, t_node**t, char f_f, t_node **ops)
 {
-	insert(t, 0, pop(f, 1));
+	insert(t, len(*t) - 1, pop(f,1));
 	if (f_f == 'a')
 	{
 		push(ops, SA);
 		push(ops, PB);
+		push(ops, RRB);
+		
 	}
 	else
 	{
 		push(ops, SB);
 		push(ops, PA);
+		push(ops, RRA);
 	}
 }
+
+// 3回
+static void push_end_to_end(t_node **f, t_node**t, char f_f, t_node **ops)
+{
+	push(t,  pop(f, len(*f) - 1));
+	if (f_f == 'a')
+	{
+		push(ops, RRA);
+		push(ops, PB);
+		push(ops, RB);
+	}
+	else
+	{
+		push(ops, RRB);
+		push(ops, PA);
+		push(ops, RA);
+	}
+}
+
 
 static void	print_poped(int poped)
 {
@@ -91,6 +153,8 @@ static void	print_poped(int poped)
 	else
 		put_str("Error!\n");
 }
+
+/// optimize function
 
 int	find_nop(t_node *ops)
 {
@@ -158,6 +222,55 @@ void	output_all_ops(t_node **ops)
 	}
 }
 
+/// ここで、最初の処理します
+static int init_sort(t_node **f, t_node **t, char f_f, t_node** ops)
+{
+	if (get_elem(*f, 0) < get_elem(*f, len(*f) - 1))
+		push_end_to_head(f, t, f_f, ops);
+	else
+		push_head_to_head(f, t, f_f, ops);
+	return (-1);
+}
+
+
+static bool all_minus(int a[6])
+{
+	int i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (0 < a[i])
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+
+/// もっとも効率の良い、関数のindexを返却します
+/// 
+static int get_opt_index(int a[6])
+{
+	int i;
+	int ri;
+
+	i = 0;
+	ri = 0;
+	while (i < 6)
+	{
+		// いまのindexが0より大きく、今の最小よりも小さい
+		// または
+		// 今の最小が0より小さく、いまのindexが0より大きい
+		// ときは
+		// 最小値のindexを更新する
+		if ((0 <= a[i] && a[i] < a[ri]) || (a[ri] < 0 && 0 <= a[i]))
+			ri = i;
+		i++;
+	}
+	return (ri);
+}
+
 
 /// @brief 
 /// @param f from
@@ -165,30 +278,53 @@ void	output_all_ops(t_node **ops)
 static void	move_stack(t_node **f, t_node **t, char f_f, t_node** ops)
 {
 	int	i;
+	int a[6];
+	void (*func[6])(t_node **f, t_node **t, char f_f, t_node** ops);
 
-	i = 1;
-	if (get_elem(*f, 0) * i < get_elem(*f, len(*f) - 1) * i)
-		push_end(f, t, f_f, ops);
-	else
-		push_head(f, t, f_f, ops);
+	i = init_sort(f, t, f_f, ops);
+	func[0] = push_head_to_head;
+	func[1] = push_second_to_head;
+	func[2] = push_end_to_head;
+	func[3] = push_head_to_end;
+	func[4] = push_second_to_end;
+	func[5] = push_end_to_end;
 	while (*f != NULL)
 	{
-		if (get_elem(*f, 0) * i < get_elem(*t, 0) * i)
-		{
-			if (get_elem(*f, 0) * i < get_elem(*f, len(*f) - 1) * i && \
-				get_elem(*f, len(*f) - 1) * i < get_elem(*t, 0) * i)
-				push_end(f, t, f_f, ops);
-			else
-				push_head(f, t, f_f, ops);
-		}
-		else if (get_elem(*f, len(*f) - 1) * i < get_elem(*t, 0) * i)
-			push_end(f, t,f_f, ops);
-		else if (1 < len(*f) && get_elem(*f, 1) * i < get_elem(*t, 0) * i)
-			push_second(f, t, f_f, ops);
-		else
+		a[0] = -1;
+		a[1] = -1;
+		a[2] = -1;
+		a[3] = -1;
+		a[4] = -1;
+		a[5] = -1;
+
+		a[0] = (get_elem(*t, 0) - get_elem(*f, 0)) * i; // push_head_to_head
+		if (1 < len(*f))
+			a[1] = (get_elem(*t, 0) - get_elem(*f, 1)) * i; // push_second_to_head
+		a[2] = (get_elem(*t, 0) - get_elem(*f, len(*f) - 1)) * i; // push_end_to_head
+		a[3] = (get_elem(*t, len(*t) - 1) - get_elem(*f, 0)) * i; // push_head_to_end
+		if (1 < len(*f))
+			a[4] = (get_elem(*t, len(*t) - 1) - get_elem(*f, 1)) * i; // push_second_to_end
+		a[5] = (get_elem(*t, len(*t) - 1) - get_elem(*f, len(*f) - 1)) * i; //push_end_to_end
+		printf("a[0] = %d\na[1] = %d\na[2] = %d\na[3] = %d\na[4] = %d\na[5] = %d\n",
+				a[0],
+				a[1],
+				a[2],
+				a[3],
+				a[4],
+				a[5]
+				);
+		printf("min index [%d]\n",get_opt_index(a));
+		printf("all minus %d\n", all_minus(a));
+		print_list(f);
+		print_list(t);
+
+		if (all_minus(a))
 			i *= -1;
+		else
+			func[get_opt_index(a)](f, t, f_f, ops);
 	}
 }
+
 
 void	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
 {
