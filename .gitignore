@@ -3,6 +3,8 @@ checker_linux
 push_swap
 __pycache__
 test
+*.swo
+*.swp
 *.out
 *.o
 *.a
