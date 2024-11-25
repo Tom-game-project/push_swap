@@ -159,6 +159,16 @@ void	output_all_ops(t_node **ops)
 }
 
 
+
+static int init_sort(t_node **f, t_node **t, char f_f, t_node** ops)
+{
+        if (get_elem(*f, 0) < get_elem(*f, len(*f) - 1))
+                push_end(f, t, f_f, ops);
+        else
+                push_head(f, t, f_f, ops);
+        return (1);
+}
+
 /// @brief 
 /// @param f from
 /// @param t to
@@ -166,11 +176,7 @@ static void	move_stack(t_node **f, t_node **t, char f_f, t_node** ops)
 {
 	int	i;
 
-	i = 1;
-	if (get_elem(*f, 0) * i < get_elem(*f, len(*f) - 1) * i)
-		push_end(f, t, f_f, ops);
-	else
-		push_head(f, t, f_f, ops);
+	i = init_sort(f, t, f_f, ops);
 	while (*f != NULL)
 	{
 		if (get_elem(*f, 0) * i < get_elem(*t, 0) * i)
