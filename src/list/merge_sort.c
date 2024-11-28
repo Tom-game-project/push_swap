@@ -217,7 +217,6 @@ static void	move_stack(t_node **f, t_node **t, char f_f, t_node** ops)
 	int ex[6];
 	int umin;
 	void (*func[6])(t_node **f, t_node**t, char f_f, t_node **ops);
-	
 
 	i = init_sort(f, t, f_f, ops);
 	set_func(func);
@@ -228,18 +227,20 @@ static void	move_stack(t_node **f, t_node **t, char f_f, t_node** ops)
 		// printf("t[0] - f[len(f) - 1] %d\n",  get_elem(*t, 0) * i - get_elem(*f, len(*f) - 1) * i);
 		//if (1 < len(*f))
 		//    printf("t[0] - f[1] %d\n",  get_elem(*f, 1) * i < get_elem(*t, 0) * i);
-		ex[0] = get_elem(*t, 0) * i - get_elem(*f, 0) * i;
-		ex[1] = get_elem(*t, 0) * i - get_elem(*f, len(*f) - 1) * i;
+		//printf("t[len(t) - 1] - f[0] %d\n",(get_elem(*t, len(*t) - 1) - get_elem(*f, 0)) * i);
+		ex[0] = (get_elem(*t, 0) - get_elem(*f, 0)) * i;
+		ex[1] = (get_elem(*t, 0) - get_elem(*f, len(*f) - 1)) * i;
 		if (1 < len(*f))
 		    ex[2] = (get_elem(*t, 0) - get_elem(*f, 1)) * i;
+		//ex[3] = (get_elem(*t, len(*t) - 1) - get_elem(*f, 0)) * i;
 		//printf("==================\n");
+		//printf("len f (%d) len t (%d)\n", len(*f), len(*t));
 		if (get_min_exclude_minus(ex, &umin)){
-			// umin not found
-			//printf("umin not found\n");
-			//printf("reverce!\n");
+			//printf("hello");
 			i *= -1;
-		} else { 
-			// printf("umin: %d\n",umin);
+		}
+		else{
+			//printf("selected (%d)\n", umin);
 			func[umin](f, t, f_f, ops); // 条件に対応した関数を実行する
 		}
 	}
