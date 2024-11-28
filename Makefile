@@ -35,8 +35,8 @@ STRNUMTOOLS_SRC = \
 src/strnumtools/comp.c
 
 TEST = \
-tests/testlt.c
-# tests/mtest00.c
+tests/mtest00.c
+#tests/testlt.c
 # tests/test02.c
 # tests/test00.c
 # tests/test01.c

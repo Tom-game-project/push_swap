@@ -1,5 +1,6 @@
 #include "../src/list/list.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 
 int main()
@@ -18,6 +19,10 @@ int main()
     push(&a, 5);
     push(&a, 4);
     push(&a, 3);
+
+    printf("%d\n", pop(&a, 6));
+    printf("list\n");
+    print_list(&a);
 
     merge_sort(&a, &b, &ops);
     output_all_ops(&ops);
