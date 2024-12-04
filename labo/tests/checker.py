@@ -2,6 +2,7 @@ from labo import push_swap
 # import argparse
 import subprocess
 from random import shuffle
+import sys
 
 
 # 簡易的なチェッカー
@@ -22,7 +23,7 @@ def checker(operations: list[str]):
 
 
 if __name__ == "__main__":
-    a = list(range(500))
+    a = list(range(int(sys.argv[1])))
     shuffle(a)
     out = subprocess.run([
             "./../push_swap",

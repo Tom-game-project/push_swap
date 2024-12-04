@@ -1,6 +1,5 @@
 from enum import Enum,auto
 
-
 class instruction(Enum):
     sa = auto()
     sb = auto()
@@ -112,10 +111,54 @@ class push_swap:
             case "rrr":
                 self.rrr()
             case _:
-                # raise BaseException("Error!")
+                raise BaseException(f"command \"{command}\" not found")
                 self.step -= 1
         # if self.print_flag:
         #     print(command.name)
+
+    def inverce_runcmd(self, command:str):
+        self.runcmd(self.inverse_func(command))
+
+    def inverse_func(self, command:str) -> str:
+        # 逆関数
+        # sa <-> sa
+        # sb <-> sb
+        # pa <-> pb
+        # pb <-> pa
+        # ra <-> rra
+        # rra <-> ra
+        # rb <-> rrb
+        # rrb <-> rb
+        # rr <-> rrr
+        # rrr <-> rr
+        match command:
+            case "sa":
+                return "sa"
+            case "sb":
+                return "sb"
+            case "pa":
+                return "pb"
+            case "pb":
+                return "pa"
+            case "ra":
+                return "rra"
+            case "rb":
+                return "rrb"
+            case "rr":
+                return "rrr"
+            case "rra":
+                return "ra"
+            case "rrb":
+                return "rb"
+            case "rrr":
+                return "rr"
+            case _:
+                # raise BaseException("Error!")
+                self.step -= 1
+                return ""
+        
+        
+
 
 
 def swap_checker(data:list, index_a:int, index_b:int):
