@@ -4,6 +4,7 @@ import sys
 import subprocess
 import time
 from random import shuffle
+import copy
 
 # terminal
 import sys
@@ -99,6 +100,8 @@ def animation(lst:list[int], operations:list[str]):
             return "q"
         elif key == 'r':
             return "r"
+        elif key == 'o':
+            return "o"
 
 
 
@@ -111,9 +114,11 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+
+    a = list(range(args.length))
+    shuffle(a)
+    lst_tmp = copy.deepcopy(a)
     while True:
-        a = list(range(args.length))
-        shuffle(a)
         out = subprocess.run([
                 args.path_to_push_swap,
                 *list(map(str, a))
@@ -125,6 +130,11 @@ if __name__ == "__main__":
         if r == 'q':
             break
         elif r == 'r':
+            a = copy.deepcopy(lst_tmp)
+            continue
+        elif r == 'o':
+            shuffle(a)
+            lst_tmp = copy.deepcopy(a)
             continue
 
 
