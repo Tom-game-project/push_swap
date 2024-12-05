@@ -133,8 +133,8 @@ if __name__ == "__main__":
             a = copy.deepcopy(lst_tmp)
             continue
         elif r == 'o':
+            a = list(range(args.length))
             shuffle(a)
             lst_tmp = copy.deepcopy(a)
             continue
-
 
