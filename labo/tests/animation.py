@@ -1,6 +1,5 @@
 from labo import push_swap
 from itertools import zip_longest
-import sys
 import subprocess
 import time
 from random import shuffle
@@ -11,18 +10,19 @@ import sys
 import termios
 import tty
 
-
 # argparse
 import argparse
 
 # magic numbers
-FREE_BACKSPACE = 3
+FREE_BACKSPACE = 4
 
 GREEN = "\033[0;32m"
+YELLOW= "\033[0;33m"
+CYAN = "\033[0;36m"
 END = "\033[0m"
 
 def get_key():
-    """1文字のキー入力を取得する"""
+    # 1文字のキー入力を取得する
     # 現在の端末設定を保存
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
@@ -55,15 +55,25 @@ def run_command(psw, cmd, inverce = False):
     else:
         psw.runcmd(cmd)
 
+def set_cmd_row(cmds:list[str], cmd_index:int):
+    if cmd_index <= 3:
+        return "|".join(map(lambda i: i[1].ljust(3) if i[0] != cmd_index else f"{YELLOW}{i[1].ljust(3)}{END}", enumerate(cmds[0: 6])))
+    else:
+        return "|".join(map(lambda i: i[1].ljust(3) if i[0] != 3 else f"{YELLOW}{i[1].ljust(3)}{END}", enumerate(cmds[cmd_index - 3 : cmd_index + 3])))
 
-def flash_image(psw, max_value, l, cmd, inverce = False):
+
+def flash_image(psw, max_value, l, cmds, cmd_index, inverce = False):
     dd = draw_draft(
         psw.stack_a,
         psw.stack_b,
         max_value
     )
+    cmd = cmds[cmd_index]
     sys.stdout.write(f"|{GREEN}Push Swap Visualizer{END}|".center(max_value * 2 + 12, "+") +"\n")
-    sys.stdout.write("h: back, l: next, q: quit" +"\n")
+    cmd_row = set_cmd_row(cmds, cmd_index + 1 if psw.step != 0 else 0)
+    per = str(round((cmd_index / len(cmds)) * 100)) + "%"
+    sys.stdout.write(f"step: {str(psw.step).ljust(5)}({per}), cmd [{cmd_row}]         \n");
+    sys.stdout.write(f"Tip| {CYAN}r: reset{END}, {CYAN}o: another case{END}, {CYAN}h: back{END}, {CYAN}l: next{END}, {CYAN}q: quit{END}" +"\n")
     sys.stdout.write("stack_a".center(max_value)+ '|'+ "stack_b".center(max_value) +"\n")
     for row in dd:
         sys.stdout.write(row+"\n")
@@ -81,7 +91,7 @@ def animation(lst:list[int], operations:list[str]):
     l = len(lst) + FREE_BACKSPACE
     psw = push_swap(lst)
     cmd = operations[i]
-    flash_image(psw, max_value, l, cmd)
+    flash_image(psw, max_value, l, operations, i)
     while True:
         key = get_key()
         if key == 'h':
@@ -89,12 +99,12 @@ def animation(lst:list[int], operations:list[str]):
                 i -= 1
                 cmd = operations[i]
                 run_command(psw, cmd, inverce = True)
-                flash_image(psw, max_value, l, cmd, inverce=True)
+                flash_image(psw, max_value, l, operations, i, inverce=True)
         elif key == 'l':
             if 0 <= i < len(operations) - 1:
                 cmd = operations[i]
                 run_command(psw, cmd)
-                flash_image(psw, max_value, l, cmd)
+                flash_image(psw, max_value, l, operations, i)
                 i += 1
         elif key == 'q':
             return "q"
@@ -102,8 +112,6 @@ def animation(lst:list[int], operations:list[str]):
             return "r"
         elif key == 'o':
             return "o"
-
-
 
 if __name__ == "__main__":
     # ArgumentParserを作成

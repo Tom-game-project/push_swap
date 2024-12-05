@@ -133,6 +133,7 @@ class push_swap:
         # rrb <-> rb
         # rr <-> rrr
         # rrr <-> rr
+        self.step -= 2
         match command:
             case "sa":
                 return "sa"
@@ -156,7 +157,6 @@ class push_swap:
                 return "rr"
             case _:
                 # raise BaseException("Error!")
-                self.step -= 1
                 return ""
 
 
