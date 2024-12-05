@@ -10,6 +10,13 @@ import sys
 import termios
 import tty
 
+
+# argparse
+import argparse
+
+
+FREE_BACKSPACE = 3
+
 def get_key():
     """1文字のキー入力を取得する"""
     # 現在の端末設定を保存
@@ -24,8 +31,10 @@ def get_key():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return key
 
+
 def screen_stack(stack:list[int],max_value:int) -> list[str]:
     return [("=" * i).ljust(max_value," ") for i in stack]
+
 
 def draw_draft(stack_a:list[int], stack_b:list[int], max_value:int) -> list[str]:
     return [row_a + '|' + row_b + '|' for row_a,row_b in zip_longest(
@@ -42,26 +51,30 @@ def run_command(psw, cmd, inverce = False):
     else:
         psw.runcmd(cmd)
 
+
 def flash_image(psw, max_value, l, cmd, inverce = False):
     dd = draw_draft(
         psw.stack_a,
         psw.stack_b,
         max_value
     )
+    sys.stdout.write("\033[0;32mPush Swap Visualizer\033[0m".center(50, "*") +"\n")
+    sys.stdout.write("h: back, l: next, q: quit" +"\n")
     sys.stdout.write("stack_a".center(max_value)+ '|'+ "stack_b".center(max_value) +"\n")
     for row in dd:
         sys.stdout.write(row+"\n")
     if len(dd) < l:
-        for i in range(l - 1 - len(dd)):
+        for i in range(l - FREE_BACKSPACE - len(dd)):
             sys.stdout.write(" " * (max_value * 2 + 2) +"\n")
-    sys.stdout.flush()
     sys.stdout.write("\033[F" * l)
+    sys.stdout.flush()
+
 
 def animation4(lst:list[int], operations:list[str]):
     play_flag = False
     i = 0
     max_value = max(lst)
-    l = len(lst) + 1
+    l = len(lst) + FREE_BACKSPACE
     psw = push_swap(lst)
     cmd = operations[i]
     flash_image(psw, max_value, l, cmd)
@@ -81,14 +94,23 @@ def animation4(lst:list[int], operations:list[str]):
                 i += 1
         elif key == 'q':
             break
-        #time.sleep(0.01)
 
 
 if __name__ == "__main__":
-    a = list(range(10))
+    # ArgumentParserを作成
+    parser = argparse.ArgumentParser(description="サンプルスクリプト")
+
+    # 引数を追加
+    parser.add_argument("path_to_push_swap", help="Path to executable push_swap file")
+    parser.add_argument("-l", "--length", type=int, help="Stack length at initialization", default=20)
+
+    # 引数を解析
+    args = parser.parse_args()
+
+    a = list(range(args.length))
     shuffle(a)
     out = subprocess.run([
-            "./../push_swap",
+            args.path_to_push_swap, # "./../push_swap"
             *list(map(str, a))
         ],
         encoding="utf-8",
