@@ -65,11 +65,10 @@ def animation4(lst:list[int], operations:list[str]):
     psw = push_swap(lst)
     cmd = operations[i]
     flash_image(psw, max_value, l, cmd)
-    i += 1
     while True:
         key = get_key()
         if key == 'h':
-            if 0 < i < len(operations) - 1:
+            if 0 < i < len(operations):
                 i -= 1
                 cmd = operations[i]
                 run_command(psw, cmd, inverce = True)

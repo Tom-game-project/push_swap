@@ -88,6 +88,8 @@ class push_swap:
             print(command.name)
 
     def runcmd(self, command:str):
+        if command == "":
+            return 
         self.step += 1
         match command:
             case "sa":
@@ -156,8 +158,6 @@ class push_swap:
                 # raise BaseException("Error!")
                 self.step -= 1
                 return ""
-        
-        
 
 
 
