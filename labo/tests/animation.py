@@ -14,8 +14,11 @@ import tty
 # argparse
 import argparse
 
-
+# magic numbers
 FREE_BACKSPACE = 3
+
+GREEN = "\033[0;32m"
+END = "\033[0m"
 
 def get_key():
     """1文字のキー入力を取得する"""
@@ -58,7 +61,7 @@ def flash_image(psw, max_value, l, cmd, inverce = False):
         psw.stack_b,
         max_value
     )
-    sys.stdout.write("\033[0;32mPush Swap Visualizer\033[0m".center(50, "*") +"\n")
+    sys.stdout.write(f"|{GREEN}Push Swap Visualizer{END}|".center(max_value * 2 + 12, "+") +"\n")
     sys.stdout.write("h: back, l: next, q: quit" +"\n")
     sys.stdout.write("stack_a".center(max_value)+ '|'+ "stack_b".center(max_value) +"\n")
     for row in dd:
@@ -70,7 +73,7 @@ def flash_image(psw, max_value, l, cmd, inverce = False):
     sys.stdout.flush()
 
 
-def animation4(lst:list[int], operations:list[str]):
+def animation(lst:list[int], operations:list[str]):
     play_flag = False
     i = 0
     max_value = max(lst)
@@ -93,28 +96,35 @@ def animation4(lst:list[int], operations:list[str]):
                 flash_image(psw, max_value, l, cmd)
                 i += 1
         elif key == 'q':
-            break
+            return "q"
+        elif key == 'r':
+            return "r"
+
 
 
 if __name__ == "__main__":
     # ArgumentParserを作成
-    parser = argparse.ArgumentParser(description="サンプルスクリプト")
+    parser = argparse.ArgumentParser(description="Push Swap Visualizer")
 
-    # 引数を追加
     parser.add_argument("path_to_push_swap", help="Path to executable push_swap file")
     parser.add_argument("-l", "--length", type=int, help="Stack length at initialization", default=20)
 
-    # 引数を解析
     args = parser.parse_args()
 
-    a = list(range(args.length))
-    shuffle(a)
-    out = subprocess.run([
-            args.path_to_push_swap, # "./../push_swap"
-            *list(map(str, a))
-        ],
-        encoding="utf-8",
-        stdout=subprocess.PIPE
-    )
-    # animation3(out.stdout.split("\n"))
-    animation4(a, out.stdout.split("\n"))
+    while True:
+        a = list(range(args.length))
+        shuffle(a)
+        out = subprocess.run([
+                args.path_to_push_swap,
+                *list(map(str, a))
+            ],
+            encoding="utf-8",
+            stdout=subprocess.PIPE
+        )
+        r = animation(a, out.stdout.split("\n"))
+        if r == 'q':
+            break
+        elif r == 'r':
+            continue
+
+
