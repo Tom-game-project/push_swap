@@ -3,10 +3,13 @@ from labo import push_swap
 import subprocess
 from random import shuffle
 import sys
+import itertools
 
 
 # 簡易的なチェッカー
-def checker(operations: list[str]):
+# True -> is sorted 
+# False -> is not sorted
+def checker(a:list,operations: list[str]):
     psw = push_swap(a)
     for cmd in operations:
         # print("stack_a", psw.stack_a)
@@ -16,15 +19,9 @@ def checker(operations: list[str]):
     # print("stack_a", psw.stack_a)
     # print("stack_b", psw.stack_b)
     print("step", psw.step)
-    if all(i < j for i, j in zip(psw.stack_a[: -1], psw.stack_a[1:])):
-        print("is sorted")
-    else:
-        print("is not sorted")
+    return all(i < j for i, j in zip(psw.stack_a[: -1], psw.stack_a[1:]))
 
-
-if __name__ == "__main__":
-    a = list(range(int(sys.argv[1])))
-    shuffle(a)
+def check(a:list):
     out = subprocess.run([
             "./../push_swap",
             *list(map(str, a))
@@ -32,4 +29,14 @@ if __name__ == "__main__":
         encoding="utf-8",
         stdout=subprocess.PIPE
     )
-    checker(out.stdout.split("\n"))
+    out = out.stdout.split("\n")
+    return checker(a, out)
+
+
+if __name__ == "__main__":
+    if all(check(list(a)) for i,a in enumerate(itertools.permutations(range(5)))):
+        print("ok")
+    else:
+        print("kick!")
+        
+
