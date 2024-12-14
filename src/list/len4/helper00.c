@@ -1,13 +1,13 @@
 #include "../list.h"
 
 /// rotate
-void len4_case_0(t_node **node_a, t_node **ops)
+static void len4_case_0(t_node **node_a, t_node **ops)
 {
 	pop(node_a, 0);
 	push(ops, PB);
 }
 
-void len4_case_1(t_node **node_a, t_node **ops)
+static void len4_case_1(t_node **node_a, t_node **ops)
 {
 	push(node_a, pop(node_a, 0));
 	pop(node_a, 0);
@@ -15,7 +15,7 @@ void len4_case_1(t_node **node_a, t_node **ops)
 	push(ops, PB);
 }
 
-void len4_case_2(t_node **node_a, t_node **ops)
+static void len4_case_2(t_node **node_a, t_node **ops)
 {
 	push(node_a, pop(node_a, 0));
 	push(node_a, pop(node_a, 0));
@@ -25,7 +25,7 @@ void len4_case_2(t_node **node_a, t_node **ops)
 	push(ops, PB);
 }
 
-void len4_case_3(t_node **node_a, t_node **ops)
+static void len4_case_3(t_node **node_a, t_node **ops)
 {
 	push(node_a, pop(node_a, len(*node_a) - 1));
 	pop(node_a, 0);

@@ -231,6 +231,7 @@ int shortening_rr(t_node *ops)
 	}
 	return (-1);
 }
+
 void optimize_ops(t_node **ops)
 {
 	int	n;

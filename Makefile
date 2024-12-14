@@ -21,10 +21,6 @@ src/list/len4/sort.c\
 src/list/len4/helper00.c\
 src/list/len4/helper01.c
 
-
-
-
-
 # `input_checker` module sources
 INPUT_CHECK_SRC = \
 src/input_checker/input_checker.c
@@ -41,7 +37,8 @@ OUTPUT_SRC = \
 src/output/output.c
 
 STRNUMTOOLS_SRC = \
-src/strnumtools/comp.c
+src/strnumtools/comp.c\
+src/strnumtools/ft_strlen.c
 
 TEST = \
 tests/mtest00.c

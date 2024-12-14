@@ -10,22 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-// test
-#include <stdio.h>
-
-int ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (*str != '\0')
-    {
-        str++;
-        i++;
-    }
-    return (i);
-}
+#include "strnumtools.h"
 
 static char space_as_num(char *str,int index)
 {
@@ -63,13 +48,33 @@ static int lt_abs(char *a,char *b)
     return (flag);
 }
 
+static int ge_abs(char *a,char *b)
+{
+    int i;
+    char a_char_tmp;
+    char b_char_tmp;
+    int flag;
+
+    flag = 0;
+    i = 0;
+    while (i < ft_strlen(a) || i < ft_strlen(b))
+    {
+        a_char_tmp = space_as_num(a, i);
+        b_char_tmp = space_as_num(b, i);
+        if (a_char_tmp != b_char_tmp)
+            flag = a_char_tmp >= b_char_tmp;
+        i++;
+    }
+    return (flag);
+}
+
 static int lt_helper(char *a,char *b,int a_is_minus, int b_is_minus)
 {
 
     if (a_is_minus != b_is_minus)
         return (a_is_minus && !b_is_minus);
     if (a_is_minus && b_is_minus)
-        return (!lt_abs(a, b));
+        return (ge_abs(a, b));
     return (lt_abs(a, b));
 }
 

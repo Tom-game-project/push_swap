@@ -14,7 +14,6 @@
 #include "../len3/len3.h"
 #include "len4_helper.h"
 
-
 #define LEN4_MAX 4
 #define LEN3_MAX 3
 
