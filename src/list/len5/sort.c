@@ -20,7 +20,7 @@
 
 static int ft_pow(int a, int b)
 {
-	if (b < 1)
+	if (b == 1)
 		return (a);
 	else if (b == 0)
 		return (1);
@@ -33,15 +33,13 @@ static int find_0_1_map(t_node **a_node)
 	int t;
 	int r;
 
-	int tmp;
 	r = 0;
 	i = LEN5_MAX;
 	while (0 < i)
 	{
 		i -= 1;
 		t = get_elem(*a_node, i);
-		tmp =ft_pow(2, LEN5_MAX - 1 - i) * (t == 1 || t == 2); 
-		r += tmp;
+		r+=ft_pow(2, LEN5_MAX - 1 - i) * (t == 1 || t == 2); 
 	}
 	r += 0b100000;
 	return (r);
@@ -77,9 +75,9 @@ int len5_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
 	int int_tmp;
 	int_tmp = find_0_1_map(node_a);
+	printf("find_0_1_map %d \n", int_tmp);
 	stash_min(node_a, node_b, ops, int_tmp);
 
-	printf("int tmp %d\n", int_tmp);
 	printf("node a\n");
 	print_list(node_a);
 	printf("node b\n");
