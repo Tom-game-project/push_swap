@@ -17,6 +17,7 @@
 #include "list/list.h"
 #include "list/len3/len3.h"
 #include "list/len4/len4.h"
+#include "list/len5/len5.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -84,6 +85,11 @@ int main(int argc, char *argv[])
     else if (argc == 5) // lst len 4
     {
 	    len4_sort(&a,  &ops);
+    }
+    else if (argc == 6) // lst len 5
+    {
+	    len5_sort(&a, &b, &ops);
+	    clear(&b);
     }
     else
 	    merge_sort(&a, &b, &ops); 

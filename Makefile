@@ -19,7 +19,12 @@ src/list/len3/helper00.c\
 src/list/len3/helper01.c\
 src/list/len4/sort.c\
 src/list/len4/helper00.c\
-src/list/len4/helper01.c
+src/list/len4/helper01.c\
+src/list/len5/sort.c\
+src/list/len5/helper00.c\
+src/list/len5/helper01.c\
+
+
 
 # `input_checker` module sources
 INPUT_CHECK_SRC = \
