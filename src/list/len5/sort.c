@@ -71,12 +71,29 @@ static int stash_min(t_node **node_a, t_node **node_b,t_node **ops, int mapped_i
 		return (0);
 }
 
+static int stack_b_proc(t_node **node_b, t_node **ops)
+{
+	int b0;
+	int b1;
+
+	b0 = get_elem(*node_b, 0);
+	b1 = get_elem(*node_b, 1);
+	if (b0 < b1)
+		push(ops, SB);
+	push(ops, PA);
+	push(ops, PA);
+	return (0);
+}
+
+
 int len5_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
 	int int_tmp;
 	int_tmp = find_0_1_map(node_a);
 	printf("find_0_1_map %d \n", int_tmp);
 	stash_min(node_a, node_b, ops, int_tmp);
+	len3_sort_base(node_a, ops, 3);
+	stack_b_proc(node_b, ops);
 
 	printf("node a\n");
 	print_list(node_a);

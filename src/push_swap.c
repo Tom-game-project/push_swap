@@ -85,14 +85,12 @@ int main(int argc, char *argv[])
     else if (argc == 5) // lst len 4
 	    len4_sort(&a,  &ops);
     else if (argc == 6) // lst len 5
-    {
 	    len5_sort(&a, &b, &ops);
-	    clear(&b);
-    }
     else
 	    merge_sort(&a, &b, &ops); 
     output_all_ops(&ops);
     clear(&a);
+    clear(&b);
     return (0);
 }
 

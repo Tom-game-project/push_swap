@@ -39,18 +39,20 @@ void set_len3_func(void (*func[3][3])(t_node **ops))
 	func[2][2] = NULL;
 }
 
-
-
-
-
-/// ここでスタックAを表す引数は、リストではなく配列です
-int len3_sort(t_node **node_a, t_node **ops)
+int len3_sort_base(t_node **node_a, t_node **ops, int base)
 {
 	int arr[LEN3_MAX];
 	void (*func[3][3])(t_node **ops);
 
 	set_arr(*node_a, arr);
 	set_len3_func(func);
-	func[arr[0] - 1][arr[1] - 1](ops);
+	func[arr[0] - base][arr[1] - base](ops);
 	return (0);
 }
+
+/// ここでスタックAを表す引数は、リストではなく配列です
+int len3_sort(t_node **node_a, t_node **ops)
+{
+	return len3_sort_base(node_a, ops, 1);
+}
+
