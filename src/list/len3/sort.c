@@ -9,47 +9,21 @@
 /*   Updated: 2024/11/07 21:31:45 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include "../../src/output/output.h"
-#include "list.h"
 
-/// {1, 2, 3} is sorted
-/// nop
-void len3_0_1(t_node **ops)
-{
-	(void) ops;
-}
+#include "len3_helper.h"
 
-/// {1, 3, 2}
-void len3_0_2(t_node **ops)
-{
-	push(ops, SA);
-	push(ops, RA);
-}
+#define LEN3_MAX 3
 
-/// {2, 1, 3}
-void len3_1_0(t_node **ops)
+void set_arr(t_node *origin_node_a, int target_node_a[LEN3_MAX])
 {
-	push(ops, SA);
-}
+	int i;
 
-/// {2, 3, 1}
-void len3_1_2(t_node **ops)
-{
-	push(ops, RRA);
-}
-
-/// {3, 1, 2}
-void len3_2_0(t_node **ops) 
-{
-	push(ops, RA);
-}
-
-/// {3, 2, 1}
-void len3_2_1(t_node **ops) 
-{
-	push(ops, SA);
-	push(ops, RRA);
+	i = 0;
+	while (i < LEN3_MAX)
+	{
+		target_node_a[i] = get_elem(origin_node_a, i);
+		i += 1;
+	}
 }
 
 void set_len3_func(void (*func[3][3])(t_node **ops))
@@ -65,12 +39,18 @@ void set_len3_func(void (*func[3][3])(t_node **ops))
 	func[2][2] = NULL;
 }
 
+
+
+
+
 /// ここでスタックAを表す引数は、リストではなく配列です
-int len3_sort(int node_a[3], t_node **ops)
+int len3_sort(t_node **node_a, t_node **ops)
 {
+	int arr[LEN3_MAX];
 	void (*func[3][3])(t_node **ops);
 
+	set_arr(*node_a, arr);
 	set_len3_func(func);
-	func[node_a[0] - 1][node_a[1] - 1](ops);
+	func[arr[0] - 1][arr[1] - 1](ops);
 	return (0);
 }

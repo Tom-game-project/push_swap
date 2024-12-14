@@ -30,6 +30,7 @@
 # define RRR 10
 // -----------------
 
+
 typedef struct s_node	t_node;
 
 typedef struct s_node{
@@ -80,4 +81,5 @@ void	print_ptr(t_node	**parent);
 int		get_elem(t_node *node_p, int index);
 t_node	*get_ptr(t_node *node_p, int index);
 
+void optimize_ops(t_node **ops);
 #endif

@@ -13,7 +13,16 @@ src/list/get_elem.c\
 src/list/set_num.c\
 src/list/insert.c\
 src/list/merge_sort.c\
-src/list/is_sorted.c
+src/list/is_sorted.c\
+src/list/len3/sort.c\
+src/list/len3/helper00.c\
+src/list/len3/helper01.c\
+src/list/len4/sort.c\
+src/list/len4/helper00.c\
+src/list/len4/helper01.c
+
+
+
 
 
 # `input_checker` module sources

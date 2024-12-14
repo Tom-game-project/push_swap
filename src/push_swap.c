@@ -11,12 +11,16 @@
 /* ************************************************************************** */
 
 // #include "src/list/list.h"
-#include "../src/input_checker/input_checker.h"
-#include "../src/output/output.h"
-#include "../src/strnumtools/strnumtools.h"
-#include "../src/list/list.h"
+#include "input_checker/input_checker.h"
+#include "output/output.h"
+#include "strnumtools/strnumtools.h"
+#include "list/list.h"
+#include "list/len3/len3.h"
+#include "list/len4/len4.h"
+
 #include <stdlib.h>
 #include <stdio.h>
+
 
 /// ここで、1から始まる配列にします
 int *create_list(int argc ,char *argv[])
@@ -73,9 +77,16 @@ int main(int argc, char *argv[])
     a = NULL;
     b = NULL;
     ops = NULL;
-    if (set_stack_a(&a, argc,argv))
+    if (set_stack_a(&a, argc, argv))
         return print_error();
-    merge_sort(&a, &b, &ops); 
+    if (argc == 4) // lst len 3
+	    len3_sort(&a,  &ops);
+    else if (argc == 5) // lst len 4
+    {
+	    len4_sort(&a,  &ops);
+    }
+    else
+	    merge_sort(&a, &b, &ops); 
     output_all_ops(&ops);
     clear(&a);
     return (0);
