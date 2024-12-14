@@ -52,10 +52,6 @@ t_node	*pop_index_elem(t_node **node_p_p, int index);
 // set
 void	set_num(t_node **node_p_p, int index, int value);
 
-// heap
-int		heappush(t_node **parent_p, int i32_data);
-int		heappop(t_node **node_p_p);
-
 // merge sort
 void	merge_sort(t_node **node_a, t_node **node_b, t_node **ops);
 

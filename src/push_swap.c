@@ -83,9 +83,7 @@ int main(int argc, char *argv[])
     if (argc == 4) // lst len 3
 	    len3_sort(&a,  &ops);
     else if (argc == 5) // lst len 4
-    {
 	    len4_sort(&a,  &ops);
-    }
     else if (argc == 6) // lst len 5
     {
 	    len5_sort(&a, &b, &ops);

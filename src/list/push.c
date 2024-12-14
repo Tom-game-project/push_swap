@@ -58,35 +58,3 @@ int	push(t_node **parent_p, int i32_data)
 	new_node_p->pre_p = back_node_p;
 	return (0);
 }
-
-/**
- * pub heappush
- * @brief free: required (depend on \`push\` function)
- */
-int	heappush(t_node **parent_p, int i32_data)
-{
-	int		current_index;
-	int		parent_index;
-	t_node	*parent_node;
-
-	push(parent_p, i32_data);
-	put_str("pb\n");
-	put_str("rb\n");
-	current_index = len(*parent_p) - 1;
-	while (0 < current_index)
-	{
-		parent_index = (current_index - 1) / 2;
-		parent_node = get_ptr(*parent_p, parent_index);
-		if (i32_data > parent_node -> i32_data)
-		{
-			oswap(parent_index, current_index, len(*parent_p));
-			set_num(parent_p, current_index, parent_node -> i32_data);
-			current_index = parent_index;
-			continue ;
-		}
-		break ;
-	}
-	// swap_stack_b_0(current_index, parent_index);
-	set_num(parent_p, current_index, i32_data);
-	return (0);
-}

@@ -30,13 +30,6 @@ src/list/len5/helper01.c\
 INPUT_CHECK_SRC = \
 src/input_checker/input_checker.c
 
-SWAP_SRC = \
-src/swap/swap0.c\
-src/swap/swap1.c\
-src/swap/swap2.c\
-src/swap/swap3.c\
-src/swap/oswap.c
-
 # `output` module sources
 OUTPUT_SRC = \
 src/output/output.c
@@ -70,7 +63,6 @@ $(OUTPUT_OBJ)\
 $(STRNUMTOOLS_OBJ)
 
 # archive files
-SWAP_NAME = swap.a
 LIST_NAME = list.a
 INPUT_CHECK_NAME = input_checker.a
 OUTPUT_NAME = output.a
@@ -78,7 +70,6 @@ STRNUMTOOLS_NAME = strnumtools.a
 
 # archives files
 ARCHIVES = \
-$(SWAP_NAME)\
 $(LIST_NAME)\
 $(INPUT_CHECK_NAME)\
 $(OUTPUT_NAME)\
@@ -97,9 +88,6 @@ $(MAIN_TARGET): $(MAIN_SRC) $(ARCHIVES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # archive make rules
-
-$(SWAP_NAME): $(SWAP_OBJ)
-	ar -rcs $@ $^
 
 $(LIST_NAME):$(SWAP_OBJ) $(LIST_OBJ) 
 	ar -rcs $@ $^
