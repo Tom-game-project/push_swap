@@ -13,8 +13,6 @@
 #include "list.h"
 #include "private_list.h"
 
-#include "../../src/swap/swap.h"
-#include "../../src/output/output.h"
 #include <stdlib.h>
 
 

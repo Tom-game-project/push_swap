@@ -12,10 +12,6 @@
 
 #include "list.h"
 #include <stdlib.h>
-
-#include "../../src/swap/swap.h"
-#include "../../src/output/output.h"
-
 // test
 #include <stdio.h>
 
