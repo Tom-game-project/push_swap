@@ -76,6 +76,8 @@ static int lt_helper(char *a,char *b,int a_is_minus, int b_is_minus)
 /// @brief `a < b`
 ///        able to comp minus number
 /// @return 
+/// "-100" < "21309" -> true
+///
 int lt(char *a,char *b)
 {
     int a_is_minus;

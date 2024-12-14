@@ -41,7 +41,7 @@ def test00():
             else:
                 i += 1
         # print("a",a,"\nb",b)
-    animation.animation4(
+    animation.animation(
         a_copy,
         ops
     )
@@ -175,7 +175,7 @@ def test02():
         ops.pop(n)
 
     # print("step",len(ops))
-    animation.animation4(copied_a, ops)
+    animation.animation(copied_a, ops)
 
 def test03():
     steps = []

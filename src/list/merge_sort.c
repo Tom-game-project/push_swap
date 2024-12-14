@@ -92,61 +92,6 @@ static void	print_poped(int poped)
 		put_str("Error!\n");
 }
 
-int	find_nop(t_node *ops)
-{
-	int	i;
-	int	len_ops;
-
-	i = 0;
-	len_ops = len(ops);
-	while (i < len_ops - 1)
-	{
-		if (get_elem(ops, i) == PA && get_elem(ops, i + 1) == PB)
-			return (i);
-		else if (get_elem(ops, i) == PB && get_elem(ops, i + 1) == PA)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int	shortening_rrr(t_node *ops)
-{
-	int	i;
-	int	len_ops;
-
-	i = 0;
-	len_ops = len(ops);
-	while (i < len_ops - 1)
-	{
-		if (get_elem(ops, i) == RRA && get_elem(ops, i + 1) == RRB)
-			return (i);
-		else if (get_elem(ops, i) == RRB && get_elem(ops, i + 1) == RRA)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int shortening_rr(t_node *ops)
-{
-	int i;
-	int len_ops;
-
-	i=0;
-	len_ops = len(ops);
-	while (i < len_ops - 1)
-	{
-		if (get_elem(ops, i) == RA && get_elem(ops, i + 1) == RB)
-			return (i);
-		else if (get_elem(ops, i) == RB && get_elem(ops, i + 1) == RA)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-
 void	output_all_ops(t_node **ops)
 {
 	int	poped;
@@ -157,8 +102,6 @@ void	output_all_ops(t_node **ops)
 		print_poped(poped);
 	}
 }
-
-
 
 static int init_sort(t_node **f, t_node **t, char f_f, t_node** ops)
 {
@@ -220,43 +163,78 @@ static void	move_stack(t_node **f, t_node **t, char f_f, t_node** ops)
 
 	i = init_sort(f, t, f_f, ops);
 	set_func(func);
-	while (*f != NULL) // f is not empty
+	while (*f != NULL)
 	{
 		set_minus(ex);
-		// printf("t[0] - f[0] %d\n",  get_elem(*t, 0) * i - get_elem(*f, 0) * i);
-		// printf("t[0] - f[len(f) - 1] %d\n",  get_elem(*t, 0) * i - get_elem(*f, len(*f) - 1) * i);
-		//if (1 < len(*f))
-		//    printf("t[0] - f[1] %d\n",  get_elem(*f, 1) * i < get_elem(*t, 0) * i);
-		//printf("t[len(t) - 1] - f[0] %d\n",(get_elem(*t, len(*t) - 1) - get_elem(*f, 0)) * i);
 		ex[0] = (get_elem(*t, 0) - get_elem(*f, 0)) * i;
 		ex[1] = (get_elem(*t, 0) - get_elem(*f, len(*f) - 1)) * i;
 		if (1 < len(*f))
 		    ex[2] = (get_elem(*t, 0) - get_elem(*f, 1)) * i;
-		//ex[3] = (get_elem(*t, len(*t) - 1) - get_elem(*f, 0)) * i;
-		//printf("==================\n");
-		//printf("len f (%d) len t (%d)\n", len(*f), len(*t));
-		if (get_min_exclude_minus(ex, &umin)){
-			//printf("hello");
+		if (get_min_exclude_minus(ex, &umin))
 			i *= -1;
-		}
-		else{
-			//printf("selected (%d)\n", umin);
-			func[umin](f, t, f_f, ops); // 条件に対応した関数を実行する
-		}
+		else
+			func[umin](f, t, f_f, ops);
 	}
 }
 
+/// for optimize
+int	find_nop(t_node *ops)
+{
+	int	i;
+	int	len_ops;
 
+	i = 0;
+	len_ops = len(ops);
+	while (i < len_ops - 1)
+	{
+		if (get_elem(ops, i) == PA && get_elem(ops, i + 1) == PB)
+			return (i);
+		else if (get_elem(ops, i) == PB && get_elem(ops, i + 1) == PA)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
-void	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
+int	shortening_rrr(t_node *ops)
+{
+	int	i;
+	int	len_ops;
+
+	i = 0;
+	len_ops = len(ops);
+	while (i < len_ops - 1)
+	{
+		if (get_elem(ops, i) == RRA && get_elem(ops, i + 1) == RRB)
+			return (i);
+		else if (get_elem(ops, i) == RRB && get_elem(ops, i + 1) == RRA)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int shortening_rr(t_node *ops)
+{
+	int i;
+	int len_ops;
+
+	i=0;
+	len_ops = len(ops);
+	while (i < len_ops - 1)
+	{
+		if (get_elem(ops, i) == RA && get_elem(ops, i + 1) == RB)
+			return (i);
+		else if (get_elem(ops, i) == RB && get_elem(ops, i + 1) == RA)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+void optimize_ops(t_node **ops)
 {
 	int	n;
 
-	while (!is_sorted(*node_a))
-	{
-		move_stack(node_a, node_b, 'a', ops);
-		move_stack(node_b, node_a, 'b', ops);
-	}
 	n = find_nop(*ops);
 	while (n != -1)
 	{
@@ -282,3 +260,13 @@ void	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
 	}
 }
 
+void	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
+{
+
+	while (!is_sorted(*node_a))
+	{
+		move_stack(node_a, node_b, 'a', ops);
+		move_stack(node_b, node_a, 'b', ops);
+	}
+	optimize_ops(ops);
+}

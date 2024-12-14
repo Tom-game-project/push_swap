@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/// ここで、1から始まる配列にします
 int *create_list(int argc ,char *argv[])
 {
     int *stack;
