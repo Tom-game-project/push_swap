@@ -1,4 +1,4 @@
-/*************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   merge_sort.c                                       :+:      :+:    :+:   */
@@ -25,7 +25,7 @@ int find_4_index(t_node *node_a)
 	i = 0;
 	while (i < LEN4_MAX)
 	{
-		if (get_elem(node_a, i) == LEN4_MAX)
+		if (get_elem(node_a, i) == 1)
 			return (i);
 		i += 1;
 	}
@@ -51,15 +51,15 @@ void set_arr_without_4(t_node *origin_node_a, int target_node_a[LEN3_MAX])
 int len4_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
 	void (*func[4])(t_node **node_a,t_node **ops);
+	(void) node_b;
 
 	if (is_sorted(*node_a))
 		return (0);
 	set_func_00(func);
 	func[find_4_index(*node_a)](node_a, ops);
 	// 4をスタックbに移し替えたあとのstackaの状態（３つの要素が存在する状態でソートする）
-	len3_sort(node_a, node_b, ops);
+	len3_sort_base(node_a, ops, 2);
 	push(ops, PA);
-	push(ops, RA);
 	optimize_ops(ops);
 	return (0);
 }
