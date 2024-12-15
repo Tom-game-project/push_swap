@@ -28,6 +28,8 @@ int	insert(t_node **node_p_p, int index, int value)
 	first_tmp = *node_p_p;
 	target_node = get_raw_ptr(node_p_p, index);
 	new_node = init_node(value);
+	if (new_node == NULL)
+		return (1);
 	new_node->back_p = target_node;
 	if (target_node != NULL)
 	{

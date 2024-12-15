@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "src/list/list.h"
 #include "input_checker/input_checker.h"
-#include "list/len2/len2.h"
 #include "output/output.h"
 #include "strnumtools/strnumtools.h"
+// list
 #include "list/list.h"
+#include "list/len2/len2.h"
 #include "list/len3/len3.h"
 #include "list/len4/len4.h"
 #include "list/len5/len5.h"
@@ -98,8 +98,10 @@ int main(int argc, char *argv[])
     ops = NULL;
     if (set_stack_a(&a, argc, argv))
         return print_error();
-    my_sort(func, &a, &b, &ops);
-    output_all_ops(&ops);
+    if (my_sort(func, &a, &b, &ops))
+	    clear(&ops);
+    else
+	    output_all_ops(&ops);
     clear(&a);
     clear(&b);
     return (0);

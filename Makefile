@@ -28,8 +28,6 @@ src/list/optimizer/opt00.c\
 src/list/merge_sort_helper.c\
 src/list/ops_out.c
 
-
-
 # `input_checker` module sources
 INPUT_CHECK_SRC = \
 src/input_checker/input_checker.c
