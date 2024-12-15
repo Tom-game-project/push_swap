@@ -14,95 +14,9 @@
 #include <stdlib.h>
 #include "list.h"
 
-#include "../../src/output/output.h"
 #include "optimizer/opt.h"
+#include "merge_sort_helper.h"
 
-
-/**
- * 最適化ルール
- * pa pb -> nop
- * pb pa -> nop
- * rra rrb -> rrr
- * rrb rra -> rrr
- */
-
-static void	push_end(t_node **f, t_node**t, char f_f, t_node **ops)
-{
-	insert(t, 0, pop(f, len(*f) - 1));
-	if (f_f == 'a')
-	{
-		push(ops, RRA);
-		push(ops, PB);
-	}
-	else
-	{
-		push(ops, RRB);
-		push(ops, PA);
-	}
-}
-
-static void	push_head(t_node **f, t_node**t, char f_f, t_node **ops)
-{
-	insert(t, 0, pop(f, 0));
-	if (f_f == 'a')
-		push(ops, PB);
-	else
-		push(ops, PA);
-}
-
-static void	push_second(t_node **f, t_node**t, char f_f, t_node **ops)
-{
-	insert(t, 0, pop(f, 1));
-	if (f_f == 'a')
-	{
-		push(ops, SA);
-		push(ops, PB);
-	}
-	else
-	{
-		push(ops, SB);
-		push(ops, PA);
-	}
-}
-
-static void	print_poped(int poped)
-{
-	if (poped == SA)
-		put_str("sa\n");
-	else if (poped == SB)
-		put_str("sb\n");
-	else if (poped == SS) 
-		put_str("ss\n"); 
-	else if (poped == PA) 
-		put_str("pa\n");
-	else if (poped == PB)
-		put_str("pb\n");
-	else if (poped == RA)
-		put_str("ra\n");
-	else if (poped == RB)
-		put_str("rb\n");
-	else if (poped == RR)
-		put_str("rr\n");
-	else if (poped == RRA)
-		put_str("rra\n");
-	else if (poped == RRB)
-		put_str("rrb\n");
-	else if (poped == RRR)
-		put_str("rrr\n");
-	else
-		put_str("Error!\n");
-}
-
-void	output_all_ops(t_node **ops)
-{
-	int	poped;
-
-	while (*ops != NULL)
-	{
-		poped = pop(ops, 0);
-		print_poped(poped);
-	}
-}
 
 static int init_sort(t_node **f, t_node **t, char f_f, t_node** ops)
 {

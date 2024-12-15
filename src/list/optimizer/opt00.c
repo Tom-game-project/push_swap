@@ -1,5 +1,13 @@
 #include "../list.h"
 
+/**
+ * 最適化ルール
+ * pa pb -> nop
+ * pb pa -> nop
+ * rra rrb -> rrr
+ * rrb rra -> rrr
+ */
+
 /// for optimize
 int	find_nop(t_node *ops)
 {
