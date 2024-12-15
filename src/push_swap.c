@@ -75,7 +75,6 @@ int my_sort(int (*func[5])(t_node **node_a,t_node **node_b, t_node **ops), t_nod
 	func[2] = len4_sort;
 	func[3] = len5_sort;
 	func[4] = merge_sort;
-
 	a_len = len(*node_a);
 	if (a_len == 1)
 		return (0);
@@ -84,7 +83,6 @@ int my_sort(int (*func[5])(t_node **node_a,t_node **node_b, t_node **ops), t_nod
 	else
 		return (func[4](node_a, node_b, ops));
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -106,4 +104,3 @@ int main(int argc, char *argv[])
     clear(&b);
     return (0);
 }
-
