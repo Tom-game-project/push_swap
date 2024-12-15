@@ -48,7 +48,7 @@ void set_arr_without_4(t_node *origin_node_a, int target_node_a[LEN3_MAX])
 
 /// **紛らわしいから注意**
 /// 引数は**リスト**!
-int len4_sort(t_node **node_a, t_node **ops)
+int len4_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
 	void (*func[4])(t_node **node_a,t_node **ops);
 
@@ -57,7 +57,7 @@ int len4_sort(t_node **node_a, t_node **ops)
 	set_func_00(func);
 	func[find_4_index(*node_a)](node_a, ops);
 	// 4をスタックbに移し替えたあとのstackaの状態（３つの要素が存在する状態でソートする）
-	len3_sort(node_a, ops);
+	len3_sort(node_a, node_b, ops);
 	push(ops, PA);
 	push(ops, RA);
 	optimize_ops(ops);

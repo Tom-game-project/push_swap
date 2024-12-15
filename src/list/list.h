@@ -53,7 +53,7 @@ t_node	*pop_index_elem(t_node **node_p_p, int index);
 void	set_num(t_node **node_p_p, int index, int value);
 
 // merge sort
-void	merge_sort(t_node **node_a, t_node **node_b, t_node **ops);
+int	merge_sort(t_node **node_a, t_node **node_b, t_node **ops);
 
 // is_sorted
 int		is_sorted(t_node *ra);

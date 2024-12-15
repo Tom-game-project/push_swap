@@ -261,7 +261,7 @@ void optimize_ops(t_node **ops)
 	}
 }
 
-void	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
+int	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
 {
 
 	while (!is_sorted(*node_a))
@@ -270,4 +270,5 @@ void	merge_sort(t_node **node_a,t_node **node_b, t_node **ops)
 		move_stack(node_b, node_a, 'b', ops);
 	}
 	optimize_ops(ops);
+	return (0);
 }

@@ -51,8 +51,10 @@ int len3_sort_base(t_node **node_a, t_node **ops, int base)
 }
 
 /// ここでスタックAを表す引数は、リストではなく配列です
-int len3_sort(t_node **node_a, t_node **ops)
+int len3_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
+	(void) node_b;
+
 	return len3_sort_base(node_a, ops, 1);
 }
 

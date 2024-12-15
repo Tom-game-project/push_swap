@@ -12,6 +12,7 @@
 
 // #include "src/list/list.h"
 #include "input_checker/input_checker.h"
+#include "list/len2/len2.h"
 #include "output/output.h"
 #include "strnumtools/strnumtools.h"
 #include "list/list.h"
@@ -20,8 +21,6 @@
 #include "list/len5/len5.h"
 
 #include <stdlib.h>
-#include <stdio.h>
-
 
 /// ここで、1から始まる配列にします
 int *create_list(int argc ,char *argv[])
@@ -67,11 +66,32 @@ int set_stack_a(t_node **a,int argc, char *argv[])
     return (error_flag);
 }
 
+int my_sort(int (*func[5])(t_node **node_a,t_node **node_b, t_node **ops), t_node **node_a,t_node **node_b, t_node **ops)
+{
+	int a_len;
+
+	func[0] = len2_sort;
+	func[1] = len3_sort;
+	func[2] = len4_sort;
+	func[3] = len5_sort;
+	func[4] = merge_sort;
+
+	a_len = len(*node_a);
+	if (a_len == 1)
+		return (0);
+	else if (2 <= a_len && a_len <= 5)
+		return (func[a_len - 2](node_a, node_b, ops));
+	else
+		return (func[4](node_a, node_b, ops));
+}
+
+
 int main(int argc, char *argv[])
 {
     t_node *a;
     t_node *b;
     t_node *ops;
+    int (*func[5])(t_node **node_a,t_node **node_b, t_node **ops);
 
     if (!is_valid_all(argc, argv))
         return print_error();
@@ -80,14 +100,7 @@ int main(int argc, char *argv[])
     ops = NULL;
     if (set_stack_a(&a, argc, argv))
         return print_error();
-    if (argc == 4) // lst len 3
-	    len3_sort(&a,  &ops);
-    else if (argc == 5) // lst len 4
-	    len4_sort(&a,  &ops);
-    else if (argc == 6) // lst len 5
-	    len5_sort(&a, &b, &ops);
-    else
-	    merge_sort(&a, &b, &ops); 
+    my_sort(func, &a, &b, &ops);
     output_all_ops(&ops);
     clear(&a);
     clear(&b);
