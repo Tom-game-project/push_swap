@@ -2,9 +2,6 @@
 #include "../len3/len3.h"
 #include "len5_helper.h"
 
-// for test TODO
-#include <stdio.h>
-
 #define LEN5_MAX 5
 
 #define CASE_XXXOO 0b100011

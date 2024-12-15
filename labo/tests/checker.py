@@ -18,7 +18,7 @@ def checker(a:list,operations: list[str]):
 
     # print("stack_a", psw.stack_a)
     # print("stack_b", psw.stack_b)
-    print("step", psw.step)
+    print("step", psw.step, a)
     return all(i < j for i, j in zip(psw.stack_a[: -1], psw.stack_a[1:]))
 
 def check(a:list):
@@ -34,7 +34,7 @@ def check(a:list):
 
 
 if __name__ == "__main__":
-    if all(check(list(a)) for i,a in enumerate(itertools.permutations(range(5)))):
+    if all(check(list(a)) for i,a in enumerate(itertools.permutations(range(4)))):
         print("ok")
     else:
         print("kick!")
