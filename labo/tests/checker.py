@@ -18,10 +18,11 @@ def checker(a:list,operations: list[str]):
 
     # print("stack_a", psw.stack_a)
     # print("stack_b", psw.stack_b)
-    print("step", psw.step, a)
+    print("step", psw.step)
     return all(i < j for i, j in zip(psw.stack_a[: -1], psw.stack_a[1:]))
 
 def check(a:list):
+    print(a,end="")
     out = subprocess.run([
             "./../push_swap",
             *list(map(str, a))
@@ -34,9 +35,19 @@ def check(a:list):
 
 
 if __name__ == "__main__":
+    print("len 3")
+    if all(check(list(a)) for i,a in enumerate(itertools.permutations(range(3)))):
+        print("ok")
+    else:
+        print("kick!")
+    print("len 4")
     if all(check(list(a)) for i,a in enumerate(itertools.permutations(range(4)))):
         print("ok")
     else:
         print("kick!")
-        
+    print("len 5")
+    if all(check(list(a)) for i,a in enumerate(itertools.permutations(range(5)))):
+        print("ok")
+    else:
+        print("kick!")
 
