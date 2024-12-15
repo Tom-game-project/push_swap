@@ -2,20 +2,26 @@
 
 /// {1, 2, 3} is sorted
 /// nop
-void len3_0_1(t_node **ops)
+int len3_0_1(t_node **ops)
 {
 	(void) ops;
+	return (0);
 }
 
 /// {1, 3, 2}
-void len3_0_2(t_node **ops)
+int len3_0_2(t_node **ops)
 {
-	push(ops, SA);
-	push(ops, RA);
+	if (push(ops, SA))
+		return (1);
+	if (push(ops, RA))
+		return (1);
+	return (0);
 }
 
 /// {2, 1, 3}
-void len3_1_0(t_node **ops)
+int len3_1_0(t_node **ops)
 {
-	push(ops, SA);
+	if (push(ops, SA))
+		return (1);
+	return (0);
 }

@@ -1,21 +1,28 @@
 #include "len3_helper.h"
 
 /// {2, 3, 1}
-void len3_1_2(t_node **ops)
+int len3_1_2(t_node **ops)
 {
-	push(ops, RRA);
+	if (push(ops, RRA))
+		return (1);
+	return (0);
 }
 
 /// {3, 1, 2}
-void len3_2_0(t_node **ops) 
+int len3_2_0(t_node **ops) 
 {
-	push(ops, RA);
+	if (push(ops, RA))
+		return (1);
+	return (0);
 }
 
 /// {3, 2, 1}
-void len3_2_1(t_node **ops) 
+int len3_2_1(t_node **ops) 
 {
-	push(ops, SA);
-	push(ops, RRA);
+	if (push(ops, SA))
+		return (1);
+	if (push(ops, RRA))
+		return (1);
+	return (0);
 }
 

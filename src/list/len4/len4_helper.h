@@ -3,7 +3,7 @@
 
 #include "../list.h"
 
-void set_func_00(void (*func[4])(t_node **node_a, t_node **ops));
+void set_func_00(int (*func[4])(t_node **node_a, t_node **ops));
 
 #endif
 

@@ -10,6 +10,9 @@ int len2_sort(t_node **node_a, t_node**node_b,t_node **ops)
 	p = get_elem(*node_a, 0);
 	q = get_elem(*node_a, 1);
 	if (p > q)
-		push(ops, SA);
+	{
+		if (push(ops, SA))
+			return (1);
+	}
 	return (0);
 }

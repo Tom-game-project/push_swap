@@ -17,7 +17,6 @@
 #include "optimizer/opt.h"
 #include "merge_sort_helper.h"
 
-
 int init_sort(t_node **f, t_node **t, char f_f, t_node** ops)
 {
         if (get_elem(*f, 0) < get_elem(*f, len(*f) - 1))
