@@ -4,6 +4,9 @@
 
 #define LEN5_MAX 5
 
+/// 1 2 の位置の位置を表す二進数
+/// - 1または2がある場所が1
+/// - そうでない場所が0
 #define CASE_XXXOO 0b100011
 #define CASE_XXOXO 0b100101
 #define CASE_XOXXO 0b101001
@@ -24,7 +27,8 @@ static int ft_pow(int a, int b)
 	return (a * ft_pow(a, b - 1));
 }
 
-static int find_0_1_map(t_node **a_node)
+/// 1 2を見つけるためのプログラム
+static int find_1_2_map(t_node **a_node)
 {
 	int i;
 	int t;
@@ -86,7 +90,7 @@ int len5_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
 	int int_tmp;
 
-	int_tmp = find_0_1_map(node_a);
+	int_tmp = find_1_2_map(node_a);
 	stash_min(node_a, node_b, ops, int_tmp);
 	len3_sort_base(node_a, ops, 3);
 	stack_b_proc(node_b, ops);
