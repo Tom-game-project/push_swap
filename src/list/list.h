@@ -77,5 +77,5 @@ void	print_ptr(t_node	**parent);
 int		get_elem(t_node *node_p, int index);
 t_node	*get_ptr(t_node *node_p, int index);
 
-void optimize_ops(t_node **ops);
+int optimize_ops(t_node **ops);
 #endif

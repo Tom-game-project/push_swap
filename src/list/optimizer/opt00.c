@@ -1,4 +1,5 @@
 #include "../list.h"
+#include "opt01.h"
 
 /**
  * 最適化ルール
@@ -63,32 +64,13 @@ int shortening_rr(t_node *ops)
 	return (-1);
 }
 
-void optimize_ops(t_node **ops)
+int optimize_ops(t_node **ops)
 {
-	int	n;
-
-	n = find_nop(*ops);
-	while (n != -1)
-	{
-		pop(ops, n);
-		pop(ops, n);
-		n = find_nop(*ops);
-	}
-	n = shortening_rrr(*ops);
-	while (n != -1)
-	{
-		pop(ops, n);
-		pop(ops, n); 
-		insert(ops, n, RRR);
-		n = shortening_rrr(*ops);
-	}
-	n = shortening_rr(*ops);
-	while (n != -1)
-	{
-		pop(ops, n);
-		pop(ops, n); 
-		insert(ops, n, RR);
-		n = shortening_rr(*ops);
-	}
+	if (opt_nop(ops))
+		return (1);
+	if (opt_rrr(ops))
+		return (1);
+	if (opt_rr(ops))
+		return (1);
+	return (0);
 }
-

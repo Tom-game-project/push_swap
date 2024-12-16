@@ -19,12 +19,12 @@ src/list/len3/helper00.c\
 src/list/len3/helper01.c\
 src/list/len4/sort.c\
 src/list/len4/helper00.c\
-src/list/len4/helper01.c\
 src/list/len5/sort.c\
 src/list/len5/helper00.c\
 src/list/len5/helper01.c\
 src/list/len2/sort.c\
 src/list/optimizer/opt00.c\
+src/list/optimizer/opt01.c\
 src/list/merge_sort_helper.c\
 src/list/ops_out.c
 

@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef OUTPUT_H
-# define OUTPUT_H
+#define OUTPUT_H
 
 int print_error();
 int put_str(char *str);
+int print_allocation_error();
 
 #endif

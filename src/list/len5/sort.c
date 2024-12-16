@@ -69,20 +69,20 @@ static int stash_min(t_node **node_a, t_node **node_b,t_node **ops, int mapped_i
 	else if (CASE_OOXXX == mapped_int)
 		return (case_func_ooxxx(node_a, node_b, ops));
 	else
-		return (0);
+		return (1); // unreachable
 }
 
 static int stack_b_proc(t_node **node_b, t_node **ops)
 {
-	int b0;
-	int b1;
-
-	b0 = get_elem(*node_b, 0);
-	b1 = get_elem(*node_b, 1);
-	if (b0 < b1)
-		push(ops, SB);
-	push(ops, PA);
-	push(ops, PA);
+	if (get_elem(*node_b, 0) < get_elem(*node_b, 1))
+	{
+		if ( push(ops, SB))
+			return (1);
+	}
+	if (push(ops, PA))
+		return (1);
+	if (push(ops, PA))
+		return (1);
 	return (0);
 }
 

@@ -25,9 +25,14 @@ static int ft_strlen(char *str)
     return (i);
 }
 
-void print_error()
+int print_error()
 {
-    write(STDERR_FILENO, "Error\n", 6);
+    return (write(STDERR_FILENO, "Error\n", 6));
+}
+
+int print_allocation_error()
+{
+    return (write(STDERR_FILENO, "Allocation Error Occured\n", 6));
 }
 
 void put_str(char *str)

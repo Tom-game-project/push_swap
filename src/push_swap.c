@@ -99,10 +99,8 @@ int main(int argc, char *argv[])
     if (set_stack_a(&a, argc, argv))
         return print_error();
     if (my_sort(func, &a, &b, &ops))
-	    clear(&ops);
+	    return (print_allocation_error(), clear(&a), clear(&a), clear(&b), 1);
     else
-	    output_all_ops(&ops);
-    clear(&a);
-    clear(&b);
+	    return (output_all_ops(&ops), clear(&a), clear(&b), 0) ;
     return (0);
 }

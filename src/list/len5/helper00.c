@@ -11,7 +11,7 @@ int case_func_xxxoo(t_node **node_a, t_node **node_b, t_node **ops)
 	push(ops, PB);
 	push(ops, RRA);
 	push(ops, PB);
-	return (1);
+	return (0);
 }
 
 
@@ -27,7 +27,7 @@ int case_func_xxoxo(t_node **node_a,t_node **node_b,t_node **ops)
 	push(ops, RRA);
 	push(ops, RRA);
 	push(ops, PB);
-	return (1);
+	return (0);
 }
 
 int case_func_xoxxo(t_node **node_a,t_node **node_b,t_node **ops)
@@ -40,7 +40,7 @@ int case_func_xoxxo(t_node **node_a,t_node **node_b,t_node **ops)
 	push(ops, PB);
 	push(ops, SA);
 	push(ops, PB);
-	return (1);
+	return (0);
 }
 
 int case_func_oxxxo(t_node **node_a,t_node **node_b,t_node **ops)
@@ -51,7 +51,7 @@ int case_func_oxxxo(t_node **node_a,t_node **node_b,t_node **ops)
 	push(ops, PB);
 	push(ops, RRA);
 	push(ops, PB);
-	return (1);
+	return (0);
 }
 
 int case_func_xxoox(t_node **node_a,t_node **node_b,t_node **ops)
@@ -66,5 +66,5 @@ int case_func_xxoox(t_node **node_a,t_node **node_b,t_node **ops)
 	push(ops, PB);
 	push(ops, RRA);
 	push(ops, PB);
-	return (1);
+	return (0);
 }
