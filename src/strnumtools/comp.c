@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:17:18 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 17:11:36 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:14:41 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	space_as_num(char *str, int index)
 /// @param a 
 /// @param b 
 /// @return 
-static int	lt_abs(char *a,char *b)
+static int	lt_abs(char *a, char *b)
 {
 	int		i;
 	char	a_char_tmp;
@@ -68,9 +68,8 @@ static int	ge_abs(char *a, char *b)
 	return (flag);
 }
 
-static int	lt_helper(char *a,char *b,int a_is_minus, int b_is_minus)
+static int	lt_helper(char *a, char *b, int a_is_minus, int b_is_minus)
 {
-
 	if (a_is_minus != b_is_minus)
 		return (a_is_minus && !b_is_minus);
 	if (a_is_minus && b_is_minus)
@@ -102,4 +101,3 @@ int	lt(char *a, char *b)
 	}
 	return (lt_helper(a, b, a_is_minus, b_is_minus));
 }
-

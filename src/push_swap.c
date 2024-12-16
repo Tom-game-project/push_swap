@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:59:02 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 17:19:09 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:49:47 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	*create_list(int argc, char *argv[])
 }
 
 /// @brief if something wrong return 1
-int	set_stack_a(t_node **a,int argc, char *argv[])
+int	set_stack_a(t_node **a, int argc, char *argv[])
 {
 	int	*stack;
 	int	i;

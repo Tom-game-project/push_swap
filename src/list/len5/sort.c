@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:04:52 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 16:04:53 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:12:23 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define CASE_OXOXX 0b110100
 #define CASE_OOXXX 0b111000
 
-static int ft_pow(int a, int b)
+static int	ft_pow(int a, int b)
 {
 	if (b == 1)
 		return (a);
@@ -40,11 +40,11 @@ static int ft_pow(int a, int b)
 }
 
 /// 1 2を見つけるためのプログラム
-static int find_1_2_map(t_node **a_node)
+static int	find_1_2_map(t_node **a_node)
 {
-	int i;
-	int t;
-	int r;
+	int	i;
+	int	t;
+	int	r;
 
 	r = 0;
 	i = LEN5_MAX;
@@ -52,13 +52,14 @@ static int find_1_2_map(t_node **a_node)
 	{
 		i -= 1;
 		t = get_elem(*a_node, i);
-		r+=ft_pow(2, LEN5_MAX - 1 - i) * (t == 1 || t == 2); 
+		r += ft_pow(2, LEN5_MAX - 1 - i) * (t == 1 || t == 2);
 	}
 	r += 0b100000;
 	return (r);
 }
 
-static int stash_min(t_node **node_a, t_node **node_b,t_node **ops, int mapped_int)
+static int	stash_min(\
+t_node **node_a, t_node **node_b, t_node **ops, int mapped_int)
 {
 	if (CASE_XXXOO == mapped_int)
 		return (case_func_xxxoo(node_a, node_b, ops));
@@ -81,14 +82,14 @@ static int stash_min(t_node **node_a, t_node **node_b,t_node **ops, int mapped_i
 	else if (CASE_OOXXX == mapped_int)
 		return (case_func_ooxxx(node_a, node_b, ops));
 	else
-		return (1); // unreachable
+		return (1);
 }
 
-static int stack_b_proc(t_node **node_b, t_node **ops)
+static int	stack_b_proc(t_node **node_b, t_node **ops)
 {
 	if (get_elem(*node_b, 0) < get_elem(*node_b, 1))
 	{
-		if ( push(ops, SB))
+		if (push(ops, SB))
 			return (1);
 	}
 	if (push(ops, PA))
@@ -98,9 +99,9 @@ static int stack_b_proc(t_node **node_b, t_node **ops)
 	return (0);
 }
 
-int len5_sort(t_node **node_a, t_node **node_b, t_node **ops)
+int	len5_sort(t_node **node_a, t_node **node_b, t_node **ops)
 {
-	int int_tmp;
+	int	int_tmp;
 
 	int_tmp = find_1_2_map(node_a);
 	stash_min(node_a, node_b, ops, int_tmp);

@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:05:23 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 16:57:05 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:13:48 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	opt_nop(t_node **ops)
 	return (0);
 }
 
-
 int	opt_rrr(t_node **ops)
 {
 	int	n;
@@ -36,7 +35,7 @@ int	opt_rrr(t_node **ops)
 	while (n != -1)
 	{
 		pop(ops, n);
-		pop(ops, n); 
+		pop(ops, n);
 		if (insert(ops, n, RRR))
 			return (1);
 		n = shortening_rrr(*ops);
@@ -52,7 +51,7 @@ int	opt_rr(t_node **ops)
 	while (n != -1)
 	{
 		pop(ops, n);
-		pop(ops, n); 
+		pop(ops, n);
 		if (insert(ops, n, RR))
 			return (1);
 		n = shortening_rr(*ops);

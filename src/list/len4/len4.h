@@ -6,14 +6,15 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:02:51 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 16:03:02 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:38:44 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEN4_H
-#define LEN4_H
+# define LEN4_H
 
-#include "../list.h"
+# include "../list.h"
 
-int len4_sort(t_node **node_a, t_node **node_b, t_node **ops);
+int	len4_sort(t_node **node_a, t_node **node_b, t_node **ops);
+
 #endif

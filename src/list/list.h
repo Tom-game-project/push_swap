@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:29 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 16:06:17 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:51:35 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define RRB 9
 # define RRR 10
 // -----------------
-
 
 typedef struct s_node	t_node;
 

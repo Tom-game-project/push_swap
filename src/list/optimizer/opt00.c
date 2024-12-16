@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:05:11 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 16:05:12 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:12:51 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	shortening_rrr(t_node *ops)
 	return (-1);
 }
 
-int shortening_rr(t_node *ops)
+int	shortening_rr(t_node *ops)
 {
-	int i;
-	int len_ops;
+	int	i;
+	int	len_ops;
 
-	i=0;
+	i = 0;
 	len_ops = len(ops);
 	while (i < len_ops - 1)
 	{
@@ -76,7 +76,7 @@ int shortening_rr(t_node *ops)
 	return (-1);
 }
 
-int optimize_ops(t_node **ops)
+int	optimize_ops(t_node **ops)
 {
 	if (opt_nop(ops))
 		return (1);
