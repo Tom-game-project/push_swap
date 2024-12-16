@@ -1,7 +1,20 @@
-#ifndef OPT_H
-#define OPT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   opt.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 16:05:07 by tmuranak          #+#    #+#             */
+/*   Updated: 2024/12/16 16:56:05 by tmuranak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../list.h"
-int optimize_ops(t_node **ops);
+#ifndef OPT_H
+# define OPT_H
+
+# include "../list.h"
+
+int	optimize_ops(t_node **ops);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_out.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 17:04:00 by tmuranak          #+#    #+#             */
+/*   Updated: 2024/12/16 17:04:27 by tmuranak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "list.h"
 #include "../../src/output/output.h"
 
@@ -9,9 +21,9 @@ void	print_poped(int poped)
 		put_str("sa\n");
 	else if (poped == SB)
 		put_str("sb\n");
-	else if (poped == SS) 
-		put_str("ss\n"); 
-	else if (poped == PA) 
+	else if (poped == SS)
+		put_str("ss\n");
+	else if (poped == PA)
 		put_str("pa\n");
 	else if (poped == PB)
 		put_str("pb\n");

@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:51:29 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/11/07 21:25:26 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:06:17 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_node	*pop_index_elem(t_node **node_p_p, int index);
 void	set_num(t_node **node_p_p, int index, int value);
 
 // merge sort
-int	merge_sort(t_node **node_a, t_node **node_b, t_node **ops);
+int		merge_sort(t_node **node_a, t_node **node_b, t_node **ops);
 
 // is_sorted
 int		is_sorted(t_node *ra);
@@ -77,5 +77,5 @@ void	print_ptr(t_node	**parent);
 int		get_elem(t_node *node_p, int index);
 t_node	*get_ptr(t_node *node_p, int index);
 
-int optimize_ops(t_node **ops);
+int		optimize_ops(t_node **ops);
 #endif

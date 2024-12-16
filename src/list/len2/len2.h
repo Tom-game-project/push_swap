@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   len2.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 16:01:32 by tmuranak          #+#    #+#             */
+/*   Updated: 2024/12/16 16:07:21 by tmuranak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEN2_H
-#define LEN2_H
-#include "../list.h"
+# define LEN2_H
+# include "../list.h"
 
-
-int len2_sort(t_node **node_a, t_node **node_b, t_node **ops);
+int	len2_sort(t_node **node_a, t_node **node_b, t_node **ops);
 
 #endif

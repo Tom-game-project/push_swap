@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   opt01.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/16 16:05:23 by tmuranak          #+#    #+#             */
+/*   Updated: 2024/12/16 16:57:05 by tmuranak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../list.h"
 #include "opt01_helper.h"
 
 int	opt_nop(t_node **ops)
 {
-	int n;
+	int	n;
 
 	n = find_nop(*ops);
 	while (n != -1)
@@ -16,9 +28,9 @@ int	opt_nop(t_node **ops)
 }
 
 
-int opt_rrr(t_node **ops)
+int	opt_rrr(t_node **ops)
 {
-	int n;
+	int	n;
 
 	n = shortening_rrr(*ops);
 	while (n != -1)
@@ -32,9 +44,9 @@ int opt_rrr(t_node **ops)
 	return (0);
 }
 
-int opt_rr(t_node **ops)
+int	opt_rr(t_node **ops)
 {
-	int n;
+	int	n;
 
 	n = shortening_rr(*ops);
 	while (n != -1)
