@@ -104,9 +104,13 @@ int	len5_sort(t_node **node_a, t_node **node_b, t_node **ops)
 	int	int_tmp;
 
 	int_tmp = find_1_2_map(node_a);
-	stash_min(node_a, node_b, ops, int_tmp);
-	len3_sort_base(node_a, ops, 3);
-	stack_b_proc(node_b, ops);
-	optimize_ops(ops);
+	if (stash_min(node_a, node_b, ops, int_tmp))
+		return (1);
+	if (len3_sort_base(node_a, ops, 3))
+		return (1);
+	if (stack_b_proc(node_b, ops))
+		return (1);
+	if (optimize_ops(ops))
+		return (1);
 	return (0);
 }

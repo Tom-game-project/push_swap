@@ -62,6 +62,7 @@ int	len4_sort(t_node **node_a, t_node **node_b, t_node **ops)
 		return (1);
 	if (push(ops, PA))
 		return (1);
-	optimize_ops(ops);
+	if (optimize_ops(ops))
+		return (1);
 	return (0);
 }

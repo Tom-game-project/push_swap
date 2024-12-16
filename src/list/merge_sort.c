@@ -21,6 +21,7 @@ int	merge_sort(t_node **node_a, t_node **node_b, t_node **ops)
 		if (move_stack(node_b, node_a, 'b', ops))
 			return (1);
 	}
-	optimize_ops(ops);
+	if (optimize_ops(ops))
+		return (1);
 	return (0);
 }
