@@ -6,7 +6,7 @@
 /*   By: tmuranak <tmuranak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:59:47 by tmuranak          #+#    #+#             */
-/*   Updated: 2024/12/16 17:00:08 by tmuranak         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:25:56 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,8 @@
 int	push_end(t_node **f, t_node**t, char f_f, t_node **ops);
 int	push_head(t_node **f, t_node**t, char f_f, t_node **ops);
 int	push_second(t_node **f, t_node**t, char f_f, t_node **ops);
+
+int	init_sort(t_node **f, t_node **t, char f_f, t_node **ops);
+int	move_stack(t_node **f, t_node **t, char f_f, t_node **ops);
 
 #endif

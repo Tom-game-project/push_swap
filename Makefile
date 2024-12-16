@@ -13,6 +13,8 @@ src/list/get_elem.c\
 src/list/set_num.c\
 src/list/insert.c\
 src/list/merge_sort.c\
+src/list/merge_sort_helper.c\
+src/list/merge_sort_helper01.c\
 src/list/is_sorted.c\
 src/list/len3/sort.c\
 src/list/len3/helper00.c\
@@ -25,7 +27,6 @@ src/list/len5/helper01.c\
 src/list/len2/sort.c\
 src/list/optimizer/opt00.c\
 src/list/optimizer/opt01.c\
-src/list/merge_sort_helper.c\
 src/list/ops_out.c
 
 # `input_checker` module sources
