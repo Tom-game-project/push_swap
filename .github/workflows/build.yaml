@@ -27,11 +27,21 @@ jobs:
       - name: Run make
         run: make
 
+      - name: List target directory
+        run: |
+          ls -la target/
+
+      # Setup Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # Upload artifact
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v4  # v4に更新
         with:
+          name: github-pages
           path: target
-          name: github-pages # アーティファクト名を明示的に指定
+          if-no-files-found: error  # ファイルが見つからない場合はエラーを出す
 
   deploy:
     environment:
@@ -44,4 +54,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: github-pages # buildジョブでアップロードしたものと同じ名前を指定
+          artifact_name: github-pages
