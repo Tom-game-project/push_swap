@@ -6,7 +6,10 @@
   </head>
   <body>
     <h2>Push Swap</h2>
-    <input type="text" id="push_swap_input" required size="10"/>
+    <div>
+	    please open developer console
+    </div>
+    <input type="text" id="push_swap_input" required size="50"/>
     <button id="button">run</button>
     <h2>exit status</h2>
     <p id="result"></p>
@@ -14,7 +17,7 @@
     <script>
       document.getElementById("button").addEventListener("click", () => {
 	const input_values = document.getElementById("push_swap_input").value;
-	const input_list = input_values.split(" "); 
+	const input_list = input_values.split(" ");
         console.log(input_list);
 	const result = callMain(input_list);
         document.getElementById("result").textContent = result;
