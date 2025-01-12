@@ -14,7 +14,7 @@
 # define OUTPUT_H
 
 int	print_error(void);
-int	put_str(char *str);
+void	put_str(char *str);
 int	print_allocation_error(void);
 
 #endif

@@ -1,4 +1,4 @@
-CC = cc
+CC = emcc
 CFLAGS = -Wextra -Werror -Wall -g
 
 # `list` module sources
@@ -79,13 +79,16 @@ $(OUTPUT_NAME)\
 $(STRNUMTOOLS_NAME)
 
 # MAIN push swap
-MAIN_SRC = src/push_swap.c
-MAIN_TARGET = push_swap
+MAIN_SRC	=	src/push_swap.c
+TARGET_DIR	=	target/
+MAIN_TARGET	=	$(TARGET_DIR)push_swap.js\
+			$(TARGET_DIR)push_swap.wasm
 
 all: $(MAIN_TARGET)
 
 $(MAIN_TARGET): $(MAIN_SRC) $(ARCHIVES)
-	$(CC) $(CFLAGS) $(MAIN_SRC) $(ARCHIVES) -o $@
+	mkdir -p $(TARGET_DIR)
+	$(CC) $(CFLAGS) $(MAIN_SRC) $(ARCHIVES) -s 'INVOKE_RUN=0' -o $@
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -120,4 +123,4 @@ fclean: clean
 re: fclean
 	make all
 
-.PHONY: all clean fclean test re
+.PHONY: all clean fclean test re wasm

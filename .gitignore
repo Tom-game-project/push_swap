@@ -8,3 +8,5 @@ test
 *.out
 *.o
 *.a
+# wasm
+target/
