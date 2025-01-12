@@ -2,9 +2,9 @@ name: build and deploy
 
 on:
   push:
-    branches: [ wasm ]
+    branches: [ master ]
   pull_request:
-    branches: [ wasm ]
+    branches: [ master ]
 
 permissions:
   contents: read
