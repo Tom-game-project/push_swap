@@ -12,10 +12,17 @@ jobs:
     # Specify runner +  build & upload the static files as an artifact
     runs-on: ubuntu-latest
     steps:
-      - name: Build static files
+      - name: Check out
         id: build
         uses: actions/checkout@main
+
+      - name: Emcc Setting
         uses: mymindstorm/setup-emsdk@v14
+
+      - name: Verify emcc
+        run: emcc -v
+
+      - name: Run make
         run: make
           # <Not provided for brevity>
           # At a minimum this step should build the static files of your site
@@ -25,7 +32,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
         with:
-          path: .
+          path: target
 
   # Deployment job
   deploy:
